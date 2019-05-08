@@ -1,0 +1,37 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch app",
+            "program": "${workspaceFolder}/dist/main/app.js",
+            "env": {
+                "SM_ENV": "test"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Script",
+            "program": "${workspaceFolder}/dist/bin/db-config.js",
+            "env": {
+                "SM_ENV": "test"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "run test",
+            "program": "${workspaceFolder}/services/budget/node_modules/.bin/jest",
+            "cwd": "${workspaceFolder}/services/budget/",
+            "args": ["/home/psvl/Desktop/sber-marketing-copy/services/budget/src/test/use-cases/correction/correctionUseCases.test.ts"],
+            "env": {
+                "SM_ENV": "test"
+            }
+        }
+    ]
+}

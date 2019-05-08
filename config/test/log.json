@@ -1,0 +1,10 @@
+{
+    "main": {
+        "type": "console",
+        "level": "info"
+    },
+    "access": {
+        "type": "console",
+        "level": "info"
+    }
+}

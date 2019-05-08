@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "pretty": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["es2017","dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "outDir": "dist",
+        "rootDir": "src",
+        "sourceMap": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "ES2017",
+        "baseUrl": "src",
+        "paths": {
+            "@core/*": ["main/core/*"],
+            "@bin/*": ["bin/*"],
+            "@application/*": ["main/application/*"],
+            "@domain/*": ["main/domain/*"],
+            "@use-cases/*": ["main/use-cases/*"],
+            "@infrastructure/*": ["main/infrastructure/*"],
+            "@test/*": ["test/*"],
+            "@main/*": ["main/*"],
+            "@utils/*": ["main/utils/*"]
+        }
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}

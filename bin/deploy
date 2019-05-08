@@ -1,0 +1,27 @@
+#!/bin/bash
+# run on node8 jenkins node
+
+set -e
+
+echo -e "\n\n"
+echo "[deployment] Budget"
+
+lib_dir=node_modules/deployment
+
+scriptpath=$(dirname $0)
+cd $scriptpath/../
+
+echo "[deployment] Install dependencies"
+yarn install --pure-lockfile
+
+project=$project \
+target_host=$target_host \
+port=$port \
+env=$env \
+lib_dir=$lib_dir \
+remote_user=gorod \
+packaging_release_number=$packaging_release_number \
+github_project_url=$github_project_url \
+git_branch=$git_branch \
+build_only=$build_only
+source $lib_dir/bin/deploy

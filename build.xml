@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="sber-marketing" basedir=".">
+
+    <!-- Properties -->
+
+    <property name="packaging.project" value="${ant.project.name}"/>
+
+    <property name="packaging.target.basedir" value="/opt/${packaging.project}"/>
+
+    <property name="project.node-modules.path" value="${basedir}/node_modules"/>
+
+    <property name="packaging.target.current-path" value="${packaging.target.basedir}/current"/>
+
+    <property name="sm-budget.runtime-path" value="${basedir}/runtime"/>
+
+    <!-- Dependencies -->
+
+    <import file="${project.node-modules.path}/deployment/packaging.xml"/>
+
+    <import file="${project.node-modules.path}/deployment/node.xml"/>
+
+    <!-- Deployment -->
+
+    <target name="packaging.release.switch"
+            depends="packaging.shared-folders,
+                packaging.pm2-stop,
+                node.migrate,
+                packaging.release.folder.link,
+                packaging.rollback-script,
+                packaging.pm2-start"/>
+
+    <target name="packaging.shared-folders.create.logs" depends="packaging.main-app.create-shared-folders.logs"/>
+
+    <target name="packaging.shared-folders" depends="packaging.shared-folders.create, packaging.shared-folders.set-permissions"/>
+
+    <target name="packaging.pm2-stop">
+        <shellscript shell="bash" failonerror="false">
+            pm2 stop sm-budget
+            pm2 save
+        </shellscript>
+    </target>
+
+    <target name="packaging.pm2-start">
+        <shellscript shell="bash" failonerror="true">
+            pm2 start ${basedir}/environment/pm2/sm-budget.config.js
+            pm2 save
+        </shellscript>
+    </target>
+
+</project>
