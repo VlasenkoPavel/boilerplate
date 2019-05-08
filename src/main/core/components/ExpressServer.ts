@@ -4,17 +4,17 @@ import { Logger } from 'log4js';
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { interfaces } from 'inversify';
 import { Server } from 'http';
-import { AppServerConfig } from './config-validators/AppServerConfig';
+import { ServerConfig } from './config-validators/ServerConfig';
 // import { DebugForm } from 'sm_common/src/debugForm';
 
 export class ExpressServer {
     public readonly express: express.Application;
     private logger: Logger;
     private server: Server;
-    private config: AppServerConfig;
+    private config: ServerConfig;
 
     constructor(
-        config: AppServerConfig,
+        config: ServerConfig,
         middlewares: string[] | Function[],
         logger: Logger,
         container?: interfaces.Context['container']
