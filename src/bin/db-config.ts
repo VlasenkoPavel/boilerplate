@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import '../bootstrap';
-import { Context, IRunable } from '@main/core';
+import { Context, IRunnable } from '@main/core';
 import { Type } from '@core/Type';
 import { runScript } from '../main/utils/runScript';
-import { AppDbConfig } from '@core/components/config-validators/AppDbConfig';
+import { PostgresConfig } from '@core/components/config-validators/PostgresConfig';
 import { Provider } from '@core/configuration';
 
-class GetDbConfig implements IRunable {
+class GetDbConfig implements IRunnable {
     public async run(): Promise<void> {
-        const provideConfig = Context.getInstance().getComponent(Type.DbConfigProvider) as Provider<AppDbConfig>;
+        const provideConfig = Context.getInstance().getComponent(Type.DbConfigProvider) as Provider<PostgresConfig>;
         const dbConfig = await provideConfig();
         process.stdout.write(JSON.stringify(dbConfig));
     }

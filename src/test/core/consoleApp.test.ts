@@ -1,5 +1,5 @@
 import { Tester } from '@test/common/Tester';
-import { ConsoleApp, IRunable } from '@core/.';
+import { ConsoleApp, IRunnable } from '@core/.';
 import { Type } from '@core/Type';
 import { Provider } from '@core/configuration';
 import { getConnection } from 'typeorm';
@@ -14,7 +14,7 @@ class ConsoleAppTester extends Tester {
         });
 
         describe('consoleApp tests', () => {
-            it('container loading test', () => {
+            it('loading test', () => {
                 expect(this.app).toBeInstanceOf(ConsoleApp);
             });
 
@@ -22,7 +22,7 @@ class ConsoleAppTester extends Tester {
             it('is db connected, script has been run and then connection has been closed', async () => {
                 let hasBeenRun = false;
 
-                class Script implements IRunable {
+                class Script implements IRunnable {
                     public run() {
                         hasBeenRun = true;
                         expect(getConnection().isConnected).toBeTruthy();

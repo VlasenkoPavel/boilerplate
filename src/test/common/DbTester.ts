@@ -13,7 +13,7 @@ export class DbTester {
         await runner.release();
     }
 
-    protected clearDbExcludeDictionaries(manager: EntityManager) {
+    protected clearDb(manager: EntityManager) {
         return clearDb(manager);
     }
 }

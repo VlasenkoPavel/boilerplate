@@ -1,13 +1,13 @@
-import { DbConfig } from '@c7s/config';
 import { Connection, createConnection, Logger } from 'typeorm';
 import { IConnector } from '@core/types';
+import { PostgresConfig } from './config-validators/PostgresConfig';
 
 export class DbConnector implements IConnector {
-    private config: DbConfig;
+    private config: PostgresConfig;
     private connection!: Connection;
     private logger?: Logger;
 
-    constructor(config: DbConfig, logger?: Logger) {
+    constructor(config: PostgresConfig, logger?: Logger) {
         this.config = config;
         this.logger = logger;
     }

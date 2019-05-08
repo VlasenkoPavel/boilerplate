@@ -1,4 +1,4 @@
-import { IRunable, IConnector } from './types';
+import { IRunnable, IConnector } from './types';
 
 export class ConsoleApp {
     private connector: IConnector;
@@ -7,11 +7,11 @@ export class ConsoleApp {
         this.connector = connector;
     }
 
-    public async run(runable: IRunable) {
+    public async run(runnable: IRunnable) {
         await this.connector.connect();
 
         try {
-            await runable.run();
+            await runnable.run();
         } finally {
             await this.end();
         }

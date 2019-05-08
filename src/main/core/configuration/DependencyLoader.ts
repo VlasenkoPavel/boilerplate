@@ -10,7 +10,5 @@ export class DependencyLoader extends Loader {
 
         /** use-cases */
         container.bind(CreateUser).toSelf();
-
-        /** domain factories */
     }
 }

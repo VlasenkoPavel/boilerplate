@@ -13,6 +13,6 @@ export class CreateUser {
     private repository!: IUserRepository;
 
     public async execute(params: CreateUserParams): Promise<void> {
-        this.repository.save(new User(params));
+        await this.repository.save(new User(params));
     }
 }

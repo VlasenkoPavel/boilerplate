@@ -4,7 +4,7 @@ import * as path from 'path';
 import { Type } from '../Type';
 import { buildProviderModule } from 'inversify-binding-decorators';
 import { ConfigFileChain, ConfigFactory, LogConfig } from '@c7s/config';
-import { AppDbConfig } from '../components/config-validators/AppDbConfig';
+import { PostgresConfig } from '../components/config-validators/PostgresConfig';
 import { TypeormLogger } from '../components/TypeormLogger';
 import { Logger } from 'log4js';
 import { LoggerFactory } from '../components/LoggerFactory';
@@ -28,10 +28,10 @@ export abstract class CommonAppLoader extends Loader {
                     .create<LogConfig>(LogConfig)
         );
 
-        container.bind<Provider<AppDbConfig>>(Type.DbConfigProvider).toProvider<AppDbConfig>(
+        container.bind<Provider<PostgresConfig>>(Type.DbConfigProvider).toProvider<PostgresConfig>(
             (context: interfaces.Context) => async() =>
                 await this.getComponent<ConfigFactory>(context, Type.ConfigFactory)
-                    .create<AppDbConfig>(AppDbConfig)
+                    .create<PostgresConfig>(PostgresConfig)
         );
 
         container.bind<Provider<LoggerFactory>>(Type.LoggerFactoryProvider).toProvider<LoggerFactory>(
@@ -52,7 +52,7 @@ export abstract class CommonAppLoader extends Loader {
 
         container.bind<Provider<IConnector>>(Type.ProvideConnector).toProvider<IConnector>(
             (context: interfaces.Context) => async () => {
-                const config = await (context.container.get(Type.DbConfigProvider) as Provider<AppDbConfig>)();
+                const config = await (context.container.get(Type.DbConfigProvider) as Provider<PostgresConfig>)();
                 config.entities = config.entities.map(this.makePath);
                 config.migrations = config.migrations.map(this.makePath);
                 const logger = await ((context.container.get(Type.LoggerProvider) as ProvideLogger))('db');

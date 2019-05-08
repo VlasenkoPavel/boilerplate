@@ -1,4 +1,4 @@
-export interface IRunable {
+export interface IRunnable {
     run(): void | Promise<void>;
 }
 

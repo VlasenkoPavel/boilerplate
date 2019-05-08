@@ -2,17 +2,22 @@ import { Application, IDependencyLoader } from '@core/index';
 import { AppRequester } from './Requester';
 import { Tester } from './Tester';
 import * as supertest from 'supertest';
-import { mockLoader, testLoader, Provider, AppLoader, DependencyLoader } from '@core/configuration';
+import { Provider, AppLoader, DependencyLoader, DbIntegrationTestLoader, MockLoader } from '@core/configuration';
 import { Type } from '@core/Type';
 
+const defaultLoaders: IDependencyLoader[] = [
+    new AppLoader(),
+    new DependencyLoader(),
+    new DbIntegrationTestLoader(),
+    new MockLoader(),
+];
+
 export abstract class AppTester extends Tester {
-    protected provideApp: Provider<Application>;
     protected requester: AppRequester;
     protected app: Application;
 
-    constructor(loaders: IDependencyLoader[] = [new AppLoader(), new DependencyLoader(), mockLoader, testLoader]) {
+    constructor(loaders: IDependencyLoader[] = defaultLoaders) {
         super(loaders);
-        this.provideApp = this.getComponent<Provider<Application>>(Type.ApplicationProvider);
     }
 
     public async run() {
@@ -35,7 +40,8 @@ export abstract class AppTester extends Tester {
 
     protected setUp(): void {
         beforeAll(async () => {
-            this.app = await this.provideApp();
+            const provideApp = this.getComponent<Provider<Application>>(Type.ApplicationProvider);
+            this.app = await provideApp();
             await this.app.run();
             this.requester = new AppRequester(supertest(this.app.getHttpServer()));
         });

@@ -1,9 +1,9 @@
 import { Container } from 'inversify';
-import { IDependencyLoader } from '../Context';
+import { Loader } from './Loader';
 
-export const testLoader: IDependencyLoader = {
-    load: (container: Container) => {
+export class DbIntegrationTestLoader extends Loader {
+    public load(container: Container) {
         /** integration tests */
         // container.bind(BudgetItemQueryServiceTester).toSelf();
     }
-};
+}
