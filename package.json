@@ -15,7 +15,7 @@
     "script": "bin/environment node dist/bin/script.js",
     "apidoc": "./node_modules/.bin/apidoc -i src/application/controllers -o public/static/doc",
     "tslint": "./node_modules/.bin/tslint 'src/**/*.ts'",
-    "load-test-data": "SM_ENV=test node ./dist/bin/clear-tables-exclude-dictionary && SM_ENV=test node ./dist/bin/load-test-data",
+    "load-test-data": "SM_ENV=test node ./dist/bin/clear-db && SM_ENV=test yarn migrate && SM_ENV=test node ./dist/bin/load-test-data",
     "test": "SM_ENV=test SM_DB_NAME=test_db jest -i"
   },
   "dependencies": {

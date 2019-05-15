@@ -1,7 +1,7 @@
 import { Tester } from '@test/common/Tester';
 import { ConsoleApp, IRunnable } from '@core/.';
 import { Type } from '@core/Type';
-import { Provider } from '@core/configuration';
+import { Provider, consoleAppLoaders } from '@core/configuration';
 import { getConnection } from 'typeorm';
 
 class ConsoleAppTester extends Tester {
@@ -38,4 +38,4 @@ class ConsoleAppTester extends Tester {
     }
 }
 
-new ConsoleAppTester().run();
+new ConsoleAppTester(consoleAppLoaders).run();

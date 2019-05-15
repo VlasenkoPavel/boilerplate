@@ -2,21 +2,14 @@ import { Application, IDependencyLoader } from '@core/index';
 import { AppRequester } from './Requester';
 import { Tester } from './Tester';
 import * as supertest from 'supertest';
-import { Provider, AppLoader, DependencyLoader, DbIntegrationTestLoader, MockLoader } from '@core/configuration';
+import { Provider, appLoaders } from '@core/configuration';
 import { Type } from '@core/Type';
-
-const defaultLoaders: IDependencyLoader[] = [
-    new AppLoader(),
-    new DependencyLoader(),
-    new DbIntegrationTestLoader(),
-    new MockLoader(),
-];
 
 export abstract class AppTester extends Tester {
     protected requester: AppRequester;
     protected app: Application;
 
-    constructor(loaders: IDependencyLoader[] = defaultLoaders) {
+    constructor(loaders: IDependencyLoader[] = appLoaders) {
         super(loaders);
     }
 

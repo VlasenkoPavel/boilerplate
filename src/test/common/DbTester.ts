@@ -1,9 +1,8 @@
-import { injectable } from 'inversify';
 import { getConnection, QueryRunner, EntityManager } from 'typeorm';
-import { clearDb } from '@utils/clearDb';
+import { Tester } from './Tester';
+import { clearAllTables } from '@main/utils/clearAllTables';
 
-@injectable()
-export class DbTester {
+export abstract class DbTester extends Tester {
     public getRunner() {
         return getConnection().createQueryRunner();
     }
@@ -13,7 +12,7 @@ export class DbTester {
         await runner.release();
     }
 
-    protected clearDb(manager: EntityManager) {
-        return clearDb(manager);
+    protected clearAllTables(manager: EntityManager) {
+        return clearAllTables(manager);
     }
 }

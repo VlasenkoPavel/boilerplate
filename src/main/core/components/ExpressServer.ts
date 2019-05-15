@@ -4,6 +4,7 @@ import { Logger } from 'log4js';
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { interfaces } from 'inversify';
 import { Server } from 'http';
+
 import { ServerConfig } from './config-validators/ServerConfig';
 // import { DebugForm } from 'sm_common/src/debugForm';
 
@@ -31,7 +32,7 @@ export class ExpressServer {
         });
     }
 
-    public async run() {
+    public async start() {
         const { host, port } = this.config;
 
         // if (env != 'prod') {
@@ -54,7 +55,7 @@ export class ExpressServer {
         } catch (e) {
             this.logger.error(e);
             process.exitCode = 1;
-            await this.stop();
+            await this.start();
 
             return;
         }

@@ -1,12 +1,11 @@
 import { Context, IRunnable } from '@core/.';
 import { ConsoleApp } from '@core/ConsoleApp';
 import { Type } from '@core/Type';
-import { Provider, ConsoleAppLoader, DependencyLoader } from '@core/configuration';
-import { InfrastructureLoader } from '@core/configuration/InfrastructureLoader';
+import { Provider, consoleAppLoaders } from '@core/configuration';
 
 export const runScript = async (runnable: IRunnable): Promise<void> => {
     const context = Context.getInstance();
-    context.load(new ConsoleAppLoader(), new DependencyLoader(), new InfrastructureLoader());
+    context.load(...consoleAppLoaders);
     const provide: Provider<ConsoleApp> = context.getComponent<Provider<ConsoleApp>>(Type.ApplicationProvider);
     const app = await provide();
 

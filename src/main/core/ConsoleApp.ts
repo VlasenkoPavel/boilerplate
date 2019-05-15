@@ -18,6 +18,6 @@ export class ConsoleApp {
     }
 
     public async end() {
-        await this.connector.closeConnection();
+        await this.connector.disconnect();
     }
 }

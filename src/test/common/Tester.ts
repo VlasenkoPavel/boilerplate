@@ -1,19 +1,11 @@
 import 'reflect-metadata';
 import { interfaces } from 'inversify';
-import { ConsoleAppLoader, DependencyLoader, DbIntegrationTestLoader, MockLoader } from '@core/configuration';
-import { Context, IDependencyLoader } from '@core/index';
+import { Context, IDependencyLoader, IRunnable } from '@core/index';
 
-const defaultLoaders: IDependencyLoader[] = [
-    new ConsoleAppLoader(),
-    new DependencyLoader(),
-    new DbIntegrationTestLoader(),
-    new MockLoader(),
-];
-
-export abstract class Tester {
+export abstract class Tester implements IRunnable {
     private context: Context;
 
-    constructor(loaders: IDependencyLoader[] = defaultLoaders) {
+    constructor(loaders: IDependencyLoader[] = []) {
         this.context = Context.getInstance();
         this.context.load(...loaders);
     }

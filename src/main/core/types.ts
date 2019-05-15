@@ -4,5 +4,5 @@ export interface IRunnable {
 
 export interface IConnector {
     connect(): Promise<void>;
-    closeConnection(): Promise<void> ;
+    disconnect(): Promise<void>;
 }

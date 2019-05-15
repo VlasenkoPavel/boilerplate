@@ -13,7 +13,7 @@ export class Application {
     public async run(): Promise<void> {
         await this.beforeRunHook();
         await this.connector.connect();
-        await this.server.run();
+        await this.server.start();
     }
 
     public getHttpServer() {
@@ -21,7 +21,7 @@ export class Application {
     }
 
     public async stop() {
-        await Promise.all([this.connector.closeConnection(), this.server.stop()]);
+        await Promise.all([this.connector.disconnect(), this.server.stop()]);
     }
 
     private async beforeRunHook() {}

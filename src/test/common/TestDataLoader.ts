@@ -1,4 +1,4 @@
-import '../bootstrap';
+import '../../bootstrap';
 import { EntityManager, Transaction, TransactionManager } from 'typeorm';
 
 import { DbDataLoader } from '@test/common/DataLoader';
@@ -12,6 +12,6 @@ export class TestDataLoader implements IRunnable {
     @Transaction()
     public async run(@TransactionManager() manager?: EntityManager): Promise<void> {
         await this.loader.load({ manager, dbModelClass: UserModel, models: userModels });
-        await manager.query('select refresh_all_views();');
+        // await manager.query('select refresh_all_views();');
     }
 }

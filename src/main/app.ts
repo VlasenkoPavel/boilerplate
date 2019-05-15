@@ -1,10 +1,8 @@
 import '../bootstrap';
 import { Context } from './core/Context';
-import { AppLoader } from './core/configuration/AppLoader';
 import { Type } from './core/Type';
-import { Provider, DependencyLoader } from './core/configuration';
+import { Provider, appLoaders } from './core/configuration';
 import { Application } from './core';
-import { InfrastructureLoader } from '@core/configuration/InfrastructureLoader';
 
 const run = async (provideApp:  Provider<Application>) => {
     const app = await provideApp();
@@ -12,7 +10,7 @@ const run = async (provideApp:  Provider<Application>) => {
 };
 
 const context = Context.getInstance();
-context.load(new AppLoader(), new DependencyLoader(), new InfrastructureLoader());
+context.load(...appLoaders);
 const provideApp = context.getComponent<Provider<Application>>(Type.ApplicationProvider);
 
 run(provideApp);

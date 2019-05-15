@@ -1,11 +1,10 @@
 import { AppTester } from '@test/common';
 import { IDependencyLoader } from '@core/.';
-import { AppLoader, DependencyLoader } from '@core/configuration';
+import { appLoaders } from '@core/configuration';
 import { clearDb } from '@utils/clearDb';
 import { getManager } from 'typeorm';
 import { v4 } from 'uuid';
 import { TestDataLoader } from '@test/common/TestDataLoader';
-import { InfrastructureLoader } from '@core/configuration/InfrastructureLoader';
 
 class SystemTester extends AppTester {
     constructor(loaders: IDependencyLoader[]) {
@@ -38,4 +37,4 @@ class SystemTester extends AppTester {
     }
 }
 
-new SystemTester([new AppLoader(), new DependencyLoader(), new InfrastructureLoader()]).run();
+new SystemTester(appLoaders).run();

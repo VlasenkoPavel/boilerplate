@@ -26,9 +26,9 @@
             "type": "node",
             "request": "launch",
             "name": "run test",
-            "program": "${workspaceFolder}/services/budget/node_modules/.bin/jest",
-            "cwd": "${workspaceFolder}/services/budget/",
-            "args": ["/home/psvl/Desktop/sber-marketing-copy/services/budget/src/test/use-cases/correction/correctionUseCases.test.ts"],
+            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "cwd": "${workspaceFolder}",
+            "args": ["dist/test/infrastructure/db-integration.spec.js"],
             "env": {
                 "SM_ENV": "test"
             }

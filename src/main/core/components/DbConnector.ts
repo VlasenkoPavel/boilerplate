@@ -19,7 +19,7 @@ export class DbConnector implements IConnector {
         });
     }
 
-    public async closeConnection(): Promise<void> {
+    public async disconnect(): Promise<void> {
         await this.connection.close();
     }
 }
