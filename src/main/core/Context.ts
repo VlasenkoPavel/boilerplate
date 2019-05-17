@@ -1,16 +1,24 @@
 import 'reflect-metadata';
 import { Container, interfaces } from 'inversify';
+import inversifyInjectDecorators from 'inversify-inject-decorators';
 
 export interface IDependencyLoader {
     load(container: Container): void;
 }
 
 export class Context {
+    static getComponent(IUserRepository: symbol): import("../domain/user").IUserRepository {
+        throw new Error("Method not implemented.");
+    }
     private static instance: Context;
-    private container: Container;
+    public container: Container;
 
     private constructor(option: interfaces.ContainerOptions) {
         this.container = new Container(option);
+    }
+
+    public static getComponentBy<T>(identifier: interfaces.ServiceIdentifier<T>): T {
+        return Context.getInstance().container.get(identifier);
     }
 
     public static getInstance(option: interfaces.ContainerOptions = { defaultScope: 'Singleton' }) {
@@ -24,8 +32,7 @@ export class Context {
     public load(...loaders: IDependencyLoader[]) {
         loaders.forEach(loader => loader.load(this.container));
     }
-
-    public getComponent<T>(identifier: interfaces.ServiceIdentifier<T>): T {
-        return this.container.get(identifier);
-    }
 }
+
+export const { lazyInject } = inversifyInjectDecorators(Context.getInstance().container);
+export const getComponent = Context.getComponentBy;

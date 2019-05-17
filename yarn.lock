@@ -351,6 +351,13 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/inversify-binding-decorators@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/inversify-binding-decorators/-/inversify-binding-decorators-2.0.0.tgz#6c248f0e5e87f4dafee9d79cc4ae7f757e3eea86"
+  integrity sha1-bCSPDl6H9Nr+6decxK5/dX4+6oY=
+  dependencies:
+    inversify-binding-decorators "*"
+
 "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.0.tgz#1eb8c033e98cf4e1a4cedcaf8bcafe8cb7591e85"
@@ -1193,10 +1200,6 @@ depd@~1.1.1, depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
 
-"deployment@git+ssh://git@github.com/c7s/deployment.git#dev":
-  version "1.0.0"
-  resolved "git+ssh://git@github.com/c7s/deployment.git#3333529c666ab1dc0e67c63a2d333c61b823efbb"
-
 destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
@@ -1863,9 +1866,15 @@ invariant@^2.2.4:
   dependencies:
     loose-envify "^1.0.0"
 
-inversify-binding-decorators@4.0.0:
+inversify-binding-decorators@*, inversify-binding-decorators@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/inversify-binding-decorators/-/inversify-binding-decorators-4.0.0.tgz#c4d1ac50d7d6531f465ee7894e92031f7471c865"
+  integrity sha512-r8au/oH3vS7ttHj0RivAznwElySeRohLfg8lvOSzbrX6abf/8ik8ptk49XbzdShgrnalvl7CM6MjcskfM7MMqQ==
+
+inversify-inject-decorators@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/inversify-inject-decorators/-/inversify-inject-decorators-3.1.0.tgz#d9941080bad77cec8a65ee29d905e4d5d73e1e95"
+  integrity sha512-/seBlVp5bXrLQS3DpKEmlgeZL6C7Tf/QITd+IMQrbBBGuCbxb7k3hRAWu9XSreNpFzLgSboz3sClLSEmGwHphw==
 
 inversify@5.0.1, inversify@^5.0.0:
   version "5.0.1"
@@ -3796,10 +3805,6 @@ sisteransi@^1.0.0:
 slash@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
-
-"sm_common@git+ssh://git@github.com/c7s/sm_common.git#master":
-  version "0.0.0"
-  resolved "git+ssh://git@github.com/c7s/sm_common.git#20c0ab1bfc45c24481ebe0e390bc1cdfbe43bf3a"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

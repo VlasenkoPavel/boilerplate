@@ -21,4 +21,5 @@ export const Type = {
     Logger: Symbol.for('Logger'),
     ProvideConnector: Symbol.for('Provider<IConnector>'),
     UserRepositoryFactory: Symbol.for('IRepositoryFactory<User, UserModel>'),
+    CreateAddUserCommand: Symbol.for('Factory<AddUserCommand>')
 };
