@@ -1,0 +1,1 @@
+{"type":"postgres","host":"127.0.0.1","logging":true,"database":"test","username":"gorod","password":"123qwe","migrations":["./dist/main/infrastructure/migrations/*.js"],"entities":["./main/infrastructure/**/models/*.js"]}
