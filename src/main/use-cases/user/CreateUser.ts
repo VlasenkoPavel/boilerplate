@@ -1,18 +1,21 @@
-import { injectable, inject } from 'inversify';
-import { Type } from '@core/Type';
 import { IUserRepository, User } from '@domain/user';
+import { lazyInject, Type } from '@core/.';
 
 export interface CreateUserParams {
     id: string;
     name: string;
 }
 
-@injectable()
-export class CreateUser {
-    @inject(Type.IUserRepository)
+export class CreateUserCommand {
+    @lazyInject(Type.IUserRepository)
     private repository!: IUserRepository;
+    private params: CreateUserParams;
 
-    public async execute(params: CreateUserParams): Promise<void> {
-        await this.repository.save(new User(params));
+    constructor(params: CreateUserParams) {
+        this.params = params;
+    }
+
+    public async execute(): Promise<void> {
+        await this.repository.save(new User(this.params));
     }
 }

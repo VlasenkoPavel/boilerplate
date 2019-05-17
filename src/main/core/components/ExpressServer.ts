@@ -1,12 +1,11 @@
 import * as express from 'express';
 import * as path from 'path';
 import { Logger } from 'log4js';
-import { createExpressServer, useContainer } from 'routing-controllers';
+import { createExpressServer } from 'routing-controllers';
 import { interfaces } from 'inversify';
 import { Server } from 'http';
 
 import { ServerConfig } from './config-validators/ServerConfig';
-// import { DebugForm } from 'sm_common/src/debugForm';
 
 export class ExpressServer {
     public readonly express: express.Application;
@@ -24,7 +23,6 @@ export class ExpressServer {
         this.config = config;
         const controllers = [this.makePath(this.config.controllers)];
 
-        useContainer(container);
         this.express = createExpressServer({
             controllers,
             middlewares,
@@ -34,10 +32,6 @@ export class ExpressServer {
 
     public async start() {
         const { host, port } = this.config;
-
-        // if (env != 'prod') {
-        //     this.addDebugPanel();
-        // }
 
         try {
             await new Promise<void>((resolve, reject) => {
@@ -74,17 +68,6 @@ export class ExpressServer {
     public stop() {
         this.server.close();
     }
-
-    // private addDebugPanel() {
-    //     const PUBLIC_PATH = this.makePath(this.config.public);
-    //     const docPath = `${PUBLIC_PATH}/doc`;
-    //     const debugForm = new DebugForm({
-    //         docPath,
-    //         disableVersioning: true
-    //     });
-    //     this.express.use('/', debugForm.router);
-    //     this.express.use(express.static(PUBLIC_PATH));
-    // }
 
     private makePath(filePath: string) {
         return path.resolve(__dirname, '../../../', filePath);

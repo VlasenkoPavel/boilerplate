@@ -1,10 +1,10 @@
 import { AppTester } from '@test/common';
 import { IDependencyLoader } from '@core/.';
 import { appLoaders } from '@core/configuration';
-import { clearDb } from '@utils/clearDb';
 import { getManager } from 'typeorm';
 import { v4 } from 'uuid';
 import { TestDataLoader } from '@test/common/TestDataLoader';
+import { clearAllTables } from '@main/utils/clearAllTables';
 
 class SystemTester extends AppTester {
     constructor(loaders: IDependencyLoader[]) {
@@ -19,17 +19,17 @@ class SystemTester extends AppTester {
 
         describe('app test', () => {
             beforeAll(async () => {
-                await clearDb(getManager());
+                await clearAllTables(getManager());
             });
 
             afterAll(async () => {
-                await clearDb(getManager());
-                await new TestDataLoader().run(getManager());
+                const manager = getManager();
+                await clearAllTables(manager);
+                await new TestDataLoader().run(manager);
             });
 
-            it('POST /activity test', async () => {
-                const url = `/activity`;
-                const response = await this.post(url, params);
+            it('POST /user test', async () => {
+                const response = await this.post(`/user`, params);
 
                 expect(response.status).toBe(204);
             });

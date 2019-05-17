@@ -1,13 +1,9 @@
-import { injectable, inject } from 'inversify';
 import { JsonController, OnUndefined, Body, Post } from 'routing-controllers';
 import { CreateUserFormValidator } from '../validators';
-import { CreateUser } from '@use-cases/user';
+import { CreateUserCommand } from '@use-cases/user';
 
-@injectable()
 @JsonController('/user')
 export class UserController {
-    @inject(CreateUser)
-    private create!: CreateUser;
 
     /**
      * @api {post} /user Create user
@@ -23,6 +19,6 @@ export class UserController {
     @Post('/')
     @OnUndefined(204)
     public async createAction(@Body() form: CreateUserFormValidator): Promise<void> {
-        await this.create.execute(form);
+        await new CreateUserCommand(form).execute();
     }
 }

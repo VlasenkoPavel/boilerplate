@@ -2,7 +2,6 @@ import { AppLoader } from './AppLoader';
 import { BusinessLoader } from './BusinessLoader';
 import { InfrastructureLoader } from './InfrastructureLoader';
 import { ConsoleAppLoader } from './ConsoleAppLoader';
-import { ControllerLoader } from './ControllerLoader';
 import { MockLoader } from './MockLoader';
 
 export * from './types';
@@ -15,7 +14,6 @@ const baseLoader = [
 export const appLoaders = [
     ...baseLoader,
     new AppLoader(),
-    new ControllerLoader(),
 ];
 
 export const consoleAppLoaders = [

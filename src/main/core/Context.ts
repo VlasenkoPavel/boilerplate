@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { Container, interfaces } from 'inversify';
+import inversifyInjectDecorators from 'inversify-inject-decorators';
 
 export interface IDependencyLoader {
     load(container: Container): void;
@@ -28,4 +29,10 @@ export class Context {
     public getComponent<T>(identifier: interfaces.ServiceIdentifier<T>): T {
         return this.container.get(identifier);
     }
+
+    public getLazyInject() {
+        return inversifyInjectDecorators(Context.getInstance().container);
+    }
 }
+
+export const { lazyInject } = Context.getInstance().getLazyInject();
