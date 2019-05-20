@@ -1,15 +1,9 @@
 import './bootstrap';
-import { Type } from '@application/configuration/Type';
-import { Provider, appLoaders } from '@application/configuration';
-import { Application } from 'core';
-import { context } from '@application/configuration/context';
+import { context } from '@application/configuration/loaders/infrastructureContext';
 
-const run = async (provideApp:  Provider<Application>) => {
-    const app = await provideApp();
-    app.run();
+const run = async () => {
+    await context.configure();
+    context.application.run();
 };
 
-context.load(...appLoaders);
-const provideApp = context.getComponent<Provider<Application>>(Type.ApplicationProvider);
-
-run(provideApp);
+run();
