@@ -1,21 +1,28 @@
 import { IUserRepository, User } from '@domain/user';
-import { Type, lazyInject } from '@application/configuration';
 
 export interface CreateUserParams {
     id: string;
     name: string;
 }
 
+export interface Dependencies {
+    userRepository: IUserRepository;
+}
+
 export class CreateUserCommand {
-    @lazyInject(Type.IUserRepository)
-    private repository!: IUserRepository;
+    private userRepository!: IUserRepository;
     private params: CreateUserParams;
 
-    constructor(params: CreateUserParams) {
+    constructor(params: CreateUserParams, dependencies: Dependencies) {
+        this.init(dependencies);
         this.params = params;
     }
 
     public async execute(): Promise<void> {
-        await this.repository.save(new User(this.params));
+        await this.userRepository.save(new User(this.params));
+    }
+
+    private init({ userRepository }: Dependencies) {
+        this.userRepository = userRepository;
     }
 }
