@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { interfaces } from 'inversify';
-import { Context, IDependencyLoader, IRunnable } from '@core/index';
+import { Context, IDependencyLoader } from 'infersify-context';
+import { IRunnable } from 'core';
 
 export abstract class Tester implements IRunnable {
     private context: Context;

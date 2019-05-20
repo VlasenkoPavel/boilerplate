@@ -1,10 +1,12 @@
-import { AppLoader } from './AppLoader';
-import { BusinessLoader } from './BusinessLoader';
-import { InfrastructureLoader } from './InfrastructureLoader';
-import { ConsoleAppLoader } from './ConsoleAppLoader';
-import { MockLoader } from './MockLoader';
+import { AppLoader } from './loaders/AppLoader';
+import { BusinessLoader } from './loaders/BusinessLoader';
+import { InfrastructureLoader } from './loaders/InfrastructureLoader';
+import { ConsoleAppLoader } from './loaders/ConsoleAppLoader';
+import { MockLoader } from './loaders/MockLoader';
 
 export * from './types';
+export * from './Type';
+export * from './context';
 
 const baseLoader = [
     new BusinessLoader(),

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import '../bootstrap';
-import { Context, IRunnable } from '@main/core';
-import { Type } from '@core/Type';
+import { IRunnable } from 'core';
+import { Type } from '@application/configuration/Type';
 import { runScript } from '../main/utils/runScript';
-import { PostgresConfig } from '@core/components/config-validators/PostgresConfig';
-import { Provider } from '@core/configuration';
+import { PostgresConfig } from '@chaika/config';
+import { Provider } from '@application/configuration';
+import { Context } from 'infersify-context';
 
 class GetDbConfig implements IRunnable {
     public async run(): Promise<void> {

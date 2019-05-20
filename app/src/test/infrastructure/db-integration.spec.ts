@@ -1,12 +1,12 @@
 import 'reflect-metadata';
-import { Type } from '@core/Type';
-import { Provider } from '@main/core/configuration/types';
-import { IConnector, IDependencyLoader } from '@main/core';
+import { Type } from '@application/configuration/';
+import { IConnector } from 'core/';
 import { UserRepositoryTester } from './user/UserRepositoryTester';
 import { Tester } from '@test/common/Tester';
 import { DbTester } from '@test/common/DbTester';
-import { consoleAppLoaders } from '@core/configuration';
+import { consoleAppLoaders, Provider } from '@application/configuration';
 import { Class } from '@domain/common';
+import { IDependencyLoader } from 'infersify-context';
 
 const testers: Class<Tester>[] = [
     UserRepositoryTester,

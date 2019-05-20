@@ -1,7 +1,7 @@
 import { EntityManager, ObjectType } from 'typeorm';
 
 import { inject, injectable } from 'inversify';
-import { Type } from '@core/Type';
+import { Type } from '@application/configuration';
 import { User, UserFindOption, IUserRepository } from '@domain/user';
 import { UserModel } from './models/UserModel';
 import { Repository, IRepositoryFactory, QueryBuilder, SavingManager } from '../common';

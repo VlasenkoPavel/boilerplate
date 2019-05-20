@@ -1,15 +1,14 @@
-import '../bootstrap';
-import { Context } from './core/Context';
-import { Type } from './core/Type';
-import { Provider, appLoaders } from './core/configuration';
-import { Application } from './core';
+import './bootstrap';
+import { Type } from '@application/configuration/Type';
+import { Provider, appLoaders } from '@application/configuration';
+import { Application } from 'core';
+import { context } from '@application/configuration/context';
 
 const run = async (provideApp:  Provider<Application>) => {
     const app = await provideApp();
     app.run();
 };
 
-const context = Context.getInstance();
 context.load(...appLoaders);
 const provideApp = context.getComponent<Provider<Application>>(Type.ApplicationProvider);
 

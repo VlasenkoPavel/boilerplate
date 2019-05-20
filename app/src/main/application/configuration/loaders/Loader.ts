@@ -1,5 +1,5 @@
 import { Container, interfaces } from 'inversify';
-import { IDependencyLoader } from '../Context';
+import { IDependencyLoader } from 'infersify-context';
 
 export abstract class Loader implements IDependencyLoader {
     public abstract load(container: Container): void;

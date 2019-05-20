@@ -3,15 +3,11 @@ import * as path from 'path';
 
 import { Type } from '../Type';
 import { buildProviderModule } from 'inversify-binding-decorators';
-import { ConfigFileChain, ConfigFactory, LogConfig } from '@c7s/config';
-import { PostgresConfig } from '../components/config-validators/PostgresConfig';
-import { TypeormLogger } from '../components/TypeormLogger';
 import { Logger } from 'log4js';
-import { LoggerFactory } from '../components/LoggerFactory';
-import { Provider, ProvideLogger } from './types';
+import { Provider, ProvideLogger } from '../types';
 import { Loader } from './Loader';
-import { DbConnector } from '@core/components/DbConnector';
-import { IConnector } from '..';
+import { IConnector, DbConnector, TypeormLogger, LoggerFactory } from 'core';
+import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chaika/config';
 
 export abstract class CommonAppLoader extends Loader {
     public load(container: Container) {

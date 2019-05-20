@@ -2,7 +2,7 @@ import { Container } from 'inversify';
 import { Loader } from './Loader';
 import { UserRepository, UserFactory } from '@infrastructure/user';
 import { IUserRepository, User } from '@domain/user';
-import { Type } from '@core/Type';
+import { Type } from '@application/configuration/Type';
 import { IRepositoryFactory } from '@infrastructure/common';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { ObjectType } from 'typeorm';

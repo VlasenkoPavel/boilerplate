@@ -1,5 +1,5 @@
 import { IUserRepository, User } from '@domain/user';
-import { lazyInject, Type } from '@core/.';
+import { Type, lazyInject } from '@application/configuration';
 
 export interface CreateUserParams {
     id: string;

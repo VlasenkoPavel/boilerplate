@@ -1,9 +1,10 @@
-import { Application, IDependencyLoader } from '@core/index';
+import { Application } from 'core';
 import { AppRequester } from './Requester';
 import { Tester } from './Tester';
 import * as supertest from 'supertest';
-import { Provider, appLoaders } from '@core/configuration';
-import { Type } from '@core/Type';
+import { Provider, appLoaders } from '@application/configuration';
+import { Type } from '@application/configuration/Type';
+import { IDependencyLoader } from 'infersify-context';
 
 export abstract class AppTester extends Tester {
     protected requester: AppRequester;

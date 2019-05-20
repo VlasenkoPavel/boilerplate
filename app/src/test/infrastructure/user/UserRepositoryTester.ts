@@ -1,7 +1,7 @@
 import { User } from '@domain/user';
 import { v4 } from 'uuid';
 import { DbTester } from '@test/common/DbTester';
-import { Type } from '@core/Type';
+import { Type } from '@application/configuration';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { getManager } from 'typeorm';
 import { UserRepository } from '@infrastructure/user';

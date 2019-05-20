@@ -1,6 +1,6 @@
 import { AppTester } from '@test/common';
-import { IDependencyLoader } from '@core/.';
-import { appLoaders } from '@core/configuration';
+import { IDependencyLoader } from 'infersify-context';
+import { appLoaders } from '@application/configuration';
 import { getManager } from 'typeorm';
 import { v4 } from 'uuid';
 import { TestDataLoader } from '@test/common/TestDataLoader';

@@ -1,7 +1,7 @@
 import { Tester } from '@test/common/Tester';
 import { ConsoleApp, IRunnable } from '@core/.';
 import { Type } from '@core/Type';
-import { Provider, consoleAppLoaders } from '@core/configuration';
+import { Provider, consoleAppLoaders } from '@application/configuration';
 import { getConnection } from 'typeorm';
 
 class ConsoleAppTester extends Tester {

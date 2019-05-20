@@ -4,7 +4,7 @@ import { EntityManager, Transaction, TransactionManager } from 'typeorm';
 import { DbDataLoader } from '@test/common/DataLoader';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { userModels } from '@test/data';
-import { IRunnable } from '@core/.';
+import { IRunnable } from 'core';
 
 export class TestDataLoader implements IRunnable {
     private loader = new DbDataLoader();

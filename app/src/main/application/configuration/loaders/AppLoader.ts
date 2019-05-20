@@ -1,14 +1,10 @@
 import { Container, interfaces } from 'inversify';
 
-import { Type } from '../Type';
-import { ServerConfig } from '../components/config-validators/ServerConfig';
-import { Application } from '../Application';
-import { ExpressServer } from '../components/ExpressServer';
-import { Provider, ProvideLogger } from './types';
-import { ErrorHandlingMiddleware } from '@core/components/middlewares/ErrorHandlingMiddleware';
-import { ConfigFactory } from '@c7s/config';
+import { Type } from '@application/configuration/Type';
+import { ExpressServer, ErrorHandlingMiddleware, Application, IConnector } from 'core';
+import { Provider, ProvideLogger } from '../types';
 import { CommonAppLoader } from './CommonAppLoader';
-import { IConnector } from '@core/types';
+import { ServerConfig, ConfigFactory } from '@chaika/config';
 
 export class AppLoader extends CommonAppLoader {
     public load(container: Container) {

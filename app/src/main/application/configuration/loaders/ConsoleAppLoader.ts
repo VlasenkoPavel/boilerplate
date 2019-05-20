@@ -1,10 +1,9 @@
 import { Container, interfaces } from 'inversify';
 
-import { Type } from '../Type';
-import { ConsoleApp } from '../ConsoleApp';
-import { Provider } from './types';
+import { Type } from '@application/configuration/Type';
+import { ConsoleApp, IConnector } from 'core';
+import { Provider } from '../types';
 import { CommonAppLoader } from './CommonAppLoader';
-import { IConnector } from '@core/types';
 
 export class ConsoleAppLoader extends CommonAppLoader {
     public load (container: Container) {

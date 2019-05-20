@@ -1,4 +1,4 @@
-import { ConfigFileChain, ConfigFactory, DbConfig } from '@c7s/config';
+import { ConfigFileChain, ConfigFactory, DbConfig } from '@chaika/config';
 import * as path from 'path';
 import { Connection, createConnection } from 'typeorm';
 

@@ -18,7 +18,7 @@
         "target": "ES2017",
         "baseUrl": "src",
         "paths": {
-            "@core/*": ["main/core/*"],
+            "@core/*": ["../../../core/*"],
             "@bin/*": ["bin/*"],
             "@application/*": ["main/application/*"],
             "@domain/*": ["main/domain/*"],

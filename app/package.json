@@ -19,8 +19,10 @@
     "test": "SM_ENV=test SM_DB_NAME=test_db jest -i"
   },
   "dependencies": {
-    "@c7s/config": "c7s/config.git#master",
     "@c7s/http-errors": "c7s/http-errors#master",
+    "@chaika/config": "VlasenkoPavel/config#master",
+    "core": "VlasenkoPavel/core#ver-0.0.1",
+    "infersify-context": "VlasenkoPavel/infersify-context#master",
     "class-transformer": "^0.1.9",
     "class-validator": "^0.8.1",
     "express": "4.16.3",

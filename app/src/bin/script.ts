@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import '../bootstrap';
 import { TransactionManager, Transaction, EntityManager } from 'typeorm';
-import { IRunnable } from '@core/.';
+import { IRunnable } from 'core';
 import { runScript } from '../main/utils/runScript';
 
 export class Script implements IRunnable {

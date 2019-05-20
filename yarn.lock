@@ -131,20 +131,20 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@c7s/config@c7s/config.git#master":
-  version "0.0.1"
-  resolved "https://codeload.github.com/c7s/config/tar.gz/2eaf518e7a20f3effcccc9f8511ee7adfa3ead12"
-  dependencies:
-    class-transformer "0.1.9"
-    class-validator "^0.8.1"
-    deep-extend "0.6.0"
-    inversify "4.13.0"
-
 "@c7s/http-errors@c7s/http-errors#master":
   version "0.0.1"
   resolved "https://codeload.github.com/c7s/http-errors/tar.gz/fc66523bedf191128d47dda79c24c8e440b3a4ee"
   dependencies:
     class-validator "^0.8.1"
+
+"@chaika/config@VlasenkoPavel/config#master":
+  version "0.0.1"
+  resolved "https://codeload.github.com/VlasenkoPavel/config/tar.gz/8f7d5ab9239ed714b1f2a6407f9515eb0ec22a47"
+  dependencies:
+    class-transformer "0.1.9"
+    class-validator "^0.8.1"
+    deep-extend "0.6.0"
+    inversify "5.0.1"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
@@ -395,6 +395,13 @@
   integrity sha1-mlC5tHOluL1RpkV1QNEt293N8l4=
   dependencies:
     inversify-inject-decorators "*"
+
+"@types/inversify@^2.0.33":
+  version "2.0.33"
+  resolved "https://registry.yarnpkg.com/@types/inversify/-/inversify-2.0.33.tgz#0770dae2299aaee57803f75235e64a99b74f6de0"
+  integrity sha1-B3Da4imaruV4A/dSNeZKmbdPbeA=
+  dependencies:
+    inversify "*"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
@@ -1212,6 +1219,19 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+
+core@VlasenkoPavel/core#ver-0.0.1:
+  version "0.0.1"
+  resolved "https://codeload.github.com/VlasenkoPavel/core/tar.gz/06f5fbc2cc47ee57d183f947aa292138df9febac"
+  dependencies:
+    "@c7s/http-errors" c7s/http-errors#master
+    "@chaika/config" VlasenkoPavel/config#master
+    class-validator "^0.8.1"
+    express "4.16.3"
+    log4js "3.0.6"
+    reflect-metadata "0.1.12"
+    routing-controllers "0.7.7"
+    typeorm "0.2.11"
 
 create-error-class@^3.0.0:
   version "3.0.2"
@@ -2119,6 +2139,16 @@ imurmurhash@^0.1.4:
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
 
+infersify-context@VlasenkoPavel/infersify-context#master:
+  version "1.0.0"
+  resolved "https://codeload.github.com/VlasenkoPavel/infersify-context/tar.gz/732411d61cdafc1c661389bd13eae42d384e4be2"
+  dependencies:
+    "@types/inversify" "^2.0.33"
+    "@types/inversify-inject-decorators" "^2.0.0"
+    inversify "^5.0.1"
+    inversify-inject-decorators "^3.1.0"
+    reflect-metadata "0.1.12"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -2154,12 +2184,7 @@ inversify-inject-decorators@*, inversify-inject-decorators@^3.1.0:
   resolved "https://registry.yarnpkg.com/inversify-inject-decorators/-/inversify-inject-decorators-3.1.0.tgz#d9941080bad77cec8a65ee29d905e4d5d73e1e95"
   integrity sha512-/seBlVp5bXrLQS3DpKEmlgeZL6C7Tf/QITd+IMQrbBBGuCbxb7k3hRAWu9XSreNpFzLgSboz3sClLSEmGwHphw==
 
-inversify@4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.13.0.tgz#0ab40570bfa4474b04d5b919bbab3a4f682a72f5"
-  integrity sha512-O5d8y7gKtyRwrvTLZzYET3kdFjqUy58sGpBYMARF13mzqDobpfBXVOPLH7HmnD2VR6Q+1HzZtslGvsdQfeb0SA==
-
-inversify@5.0.1, inversify@^5.0.0:
+inversify@*, inversify@5.0.1, inversify@^5.0.0, inversify@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.0.1.tgz#500d709b1434896ce5a0d58915c4a4210e34fb6e"
   integrity sha512-Ieh06s48WnEYGcqHepdsJUIJUXpwH5o5vodAX+DK2JA/gjy4EbEcQZxw+uFfzysmKjiLXGYwNG3qDZsKVMcINQ==
@@ -4962,9 +4987,9 @@ uc.micro@^1.0.1, uc.micro@^1.0.5:
   integrity sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
 
 uglify-js@^3.1.4:
-  version "3.5.13"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.5.13.tgz#d2d8857b598d77f8764ae3bfcf90bb1df134d2bd"
-  integrity sha512-Lho+IJlquX6sdJgyKSJx/M9y4XbDd3ekPjD8S6HYmT5yVSwDtlSuca2w5hV4g2dIsp0Y/4orbfWxKexodmFv7w==
+  version "3.5.14"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.5.14.tgz#edf2a322c37fd7173a954fb35af199b52fb10946"
+  integrity sha512-dgyjIw8KFK6AyVl5vm2tEqPewv5TKGEiiVFLI1LbF+oHua/Njd8tZk3lIbF1AWU1rNdEg7scaceADb4zqCcWXg==
   dependencies:
     commander "~2.20.0"
     source-map "~0.6.1"
