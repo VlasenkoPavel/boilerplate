@@ -1,30 +1,27 @@
 import 'reflect-metadata';
-import { Type } from '@application/configuration/';
-import { IConnector } from 'core/';
+import { IConnector, IRunnable } from 'core/';
 import { UserRepositoryTester } from './user/UserRepositoryTester';
-import { Tester } from '@test/common/Tester';
 import { DbTester } from '@test/common/DbTester';
-import { consoleAppLoaders, Provider } from '@application/configuration';
 import { Class } from '@domain/common';
-import { IDependencyLoader } from 'infersify-context';
+import { context } from '@application/configuration/loaders/infrastructureContext';
 
-const testers: Class<Tester>[] = [
+const testers: Class<IRunnable>[] = [
     UserRepositoryTester,
 ];
 
 export class DbIntegrationTester extends DbTester {
     private connector: IConnector;
-    private testers: Class<Tester>[];
+    private testers: Class<IRunnable>[];
 
-    constructor(loaders: IDependencyLoader[], testers: Class<Tester>[]) {
-        super(loaders);
+    constructor(testers: Class<IRunnable>[]) {
+        super();
         this.testers = testers;
     }
 
     public run(): void {
         beforeAll(async () => {
-            const provideConnector = this.getComponent<Provider<IConnector>>(Type.ProvideConnector);
-            this.connector = await provideConnector();
+            await context.configure();
+            this.connector = context.dbConnector;
             await this.connector.connect();
         });
 
@@ -36,4 +33,4 @@ export class DbIntegrationTester extends DbTester {
     }
 }
 
-new DbIntegrationTester(consoleAppLoaders, testers).run();
+new DbIntegrationTester(testers).run();

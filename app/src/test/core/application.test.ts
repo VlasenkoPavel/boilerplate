@@ -1,5 +1,5 @@
 import { AppTester } from '@test/common';
-import { Application } from '@core/.';
+import { Application } from 'core';
 import { AppRequester } from '@test/common/Requester';
 
 class ApplicationTester extends AppTester {

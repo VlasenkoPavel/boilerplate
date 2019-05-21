@@ -1,16 +1,14 @@
-import { Tester } from '@test/common/Tester';
-import { ConsoleApp, IRunnable } from '@core/.';
-import { Type } from '@core/Type';
-import { Provider, consoleAppLoaders } from '@application/configuration';
+import { ConsoleApp, IRunnable } from 'core';
 import { getConnection } from 'typeorm';
+import { context } from '@application/configuration/loaders/infrastructureContext';
 
-class ConsoleAppTester extends Tester {
+class ConsoleAppTester {
     private app: ConsoleApp;
 
     public run() {
         beforeAll(async () => {
-            const provideApp = this.getComponent<Provider<ConsoleApp>>(Type.ApplicationProvider);
-            this.app = await provideApp();
+            await context.configure();
+            this.app = context.consoleApp;
         });
 
         describe('consoleApp tests', () => {
@@ -38,4 +36,4 @@ class ConsoleAppTester extends Tester {
     }
 }
 
-new ConsoleAppTester(consoleAppLoaders).run();
+new ConsoleAppTester().run();

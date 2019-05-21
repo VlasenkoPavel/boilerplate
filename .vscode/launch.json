@@ -28,7 +28,7 @@
             "name": "run test",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
             "cwd": "${workspaceFolder}",
-            "args": ["app/dist/test/infrastructure/db-integration.spec.js"],
+            "args": ["src/test/core/application.test.ts"],
             "env": {
                 "SM_ENV": "test"
             }

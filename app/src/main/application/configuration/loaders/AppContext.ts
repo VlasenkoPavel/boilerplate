@@ -1,4 +1,4 @@
-import { ExpressServer, ErrorHandlingMiddleware, Application } from 'core';
+import { ExpressServer, ErrorHandlingMiddleware, Application, ConsoleApp } from 'core';
 import { ServerConfig, LogConfig, PostgresConfig } from '@chaika/config';
 import { CommonAppContext } from './CommonAppContext';
 
@@ -19,8 +19,16 @@ export class AppContext extends CommonAppContext {
         return server;
     }
 
+    get consoleApp(): ConsoleApp {
+        return new ConsoleApp(this.dbConnector);
+    }
+
     get application(): Application {
         return new Application(this.dbConnector, this.expressServer);
+    }
+
+    get postgresConfig(): PostgresConfig {
+        return this.configs.postgres;
     }
 
     public async configure(): Promise<void> {

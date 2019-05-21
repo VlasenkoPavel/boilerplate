@@ -1,13 +1,13 @@
 import { User } from '@domain/user';
 import { v4 } from 'uuid';
 import { DbTester } from '@test/common/DbTester';
-import { Type } from '@application/configuration';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { getManager } from 'typeorm';
 import { UserRepository } from '@infrastructure/user';
+import { context } from '@application/configuration/loaders/infrastructureContext';
 
 export class UserRepositoryTester extends DbTester {
-    private repository: UserRepository = this.getComponent<UserRepository>(Type.IUserRepository);
+    private repository: UserRepository = context.userRepository as UserRepository;
 
     public run() {
         const id = v4();

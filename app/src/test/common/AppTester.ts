@@ -1,18 +1,11 @@
 import { Application } from 'core';
 import { AppRequester } from './Requester';
-import { Tester } from './Tester';
 import * as supertest from 'supertest';
-import { Provider, appLoaders } from '@application/configuration';
-import { Type } from '@application/configuration/Type';
-import { IDependencyLoader } from 'infersify-context';
+import { context } from '@application/configuration/loaders/infrastructureContext';
 
-export abstract class AppTester extends Tester {
+export abstract class AppTester {
     protected requester: AppRequester;
     protected app: Application;
-
-    constructor(loaders: IDependencyLoader[] = appLoaders) {
-        super(loaders);
-    }
 
     public async run() {
         this.setUp();
@@ -34,8 +27,8 @@ export abstract class AppTester extends Tester {
 
     protected setUp(): void {
         beforeAll(async () => {
-            const provideApp = this.getComponent<Provider<Application>>(Type.ApplicationProvider);
-            this.app = await provideApp();
+            await context.configure();
+            this.app = context.application;
             await this.app.run();
             this.requester = new AppRequester(supertest(this.app.getHttpServer()));
         });

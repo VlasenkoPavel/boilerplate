@@ -1,16 +1,10 @@
 import { AppTester } from '@test/common';
-import { IDependencyLoader } from 'infersify-context';
-import { appLoaders } from '@application/configuration';
 import { getManager } from 'typeorm';
 import { v4 } from 'uuid';
 import { TestDataLoader } from '@test/common/TestDataLoader';
 import { clearAllTables } from '@main/utils/clearAllTables';
 
 class SystemTester extends AppTester {
-    constructor(loaders: IDependencyLoader[]) {
-        super(loaders);
-    }
-
     public test(): void {
         const params = {
             id: v4(),
@@ -37,4 +31,4 @@ class SystemTester extends AppTester {
     }
 }
 
-new SystemTester(appLoaders).run();
+new SystemTester().run();

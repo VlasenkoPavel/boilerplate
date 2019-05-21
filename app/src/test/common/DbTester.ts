@@ -1,8 +1,7 @@
 import { getConnection, QueryRunner, EntityManager } from 'typeorm';
-import { Tester } from './Tester';
 import { clearAllTables } from '@main/utils/clearAllTables';
 
-export abstract class DbTester extends Tester {
+export abstract class DbTester {
     public getRunner() {
         return getConnection().createQueryRunner();
     }
