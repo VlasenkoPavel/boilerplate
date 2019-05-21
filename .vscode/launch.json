@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch app",
-            "program": "${workspaceFolder}/dist/main/app.js",
+            "program": "${workspaceFolder}/app/dist/main/app.js",
             "env": {
                 "SM_ENV": "test"
             }
@@ -17,7 +17,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Script",
-            "program": "${workspaceFolder}/dist/bin/db-config.js",
+            "program": "${workspaceFolder}/app/dist/bin/db-config.js",
             "env": {
                 "SM_ENV": "test"
             }
@@ -28,7 +28,7 @@
             "name": "run test",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
             "cwd": "${workspaceFolder}",
-            "args": ["dist/test/infrastructure/db-integration.spec.js"],
+            "args": ["app/dist/test/infrastructure/db-integration.spec.js"],
             "env": {
                 "SM_ENV": "test"
             }

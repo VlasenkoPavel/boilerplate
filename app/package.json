@@ -7,7 +7,7 @@
     "pack": "zip -r -q ../../dist/budget.zip config dist ./bin/environment node_modules package.json",
     "build": "./node_modules/.bin/tslint --force 'src/**/*.ts' && ./node_modules/.bin/tsc --project tsconfig.build.json",
     "build-dev": "./node_modules/.bin/tsc --watch --project tsconfig.build.json",
-    "start": "./bin/environment node dist/main/app.js",
+    "start": "./bin/environment node dist/app.js",
     "start-dev": "./bin/environment node_modules/.bin/nodemon dist/app.js",
     "typeorm-config": "node ./dist/bin/db-config.js > ormconfig.json",
     "migrate": "./bin/environment node ./dist/bin/db-config.js > ormconfig.json && node ../node_modules/typeorm/cli migration:run",

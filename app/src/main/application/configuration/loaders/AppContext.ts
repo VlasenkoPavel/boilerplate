@@ -7,9 +7,9 @@ export class AppContext extends CommonAppContext {
         log: LogConfig,
         postgres: PostgresConfig,
         server: ServerConfig
-    }
+    };
 
-    get expressServer() {
+    get expressServer(): ExpressServer {
         const server = new ExpressServer(
             this.configs.server,
             [ErrorHandlingMiddleware],
@@ -19,7 +19,7 @@ export class AppContext extends CommonAppContext {
         return server;
     }
 
-    get application() {
+    get application(): Application {
         return new Application(this.dbConnector, this.expressServer);
     }
 

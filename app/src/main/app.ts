@@ -1,4 +1,4 @@
-import './bootstrap';
+import '../bootstrap';
 import { context } from '@application/configuration/loaders/infrastructureContext';
 
 const run = async () => {

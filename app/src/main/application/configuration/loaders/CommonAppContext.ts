@@ -5,40 +5,40 @@ import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chai
 
 export abstract class CommonAppContext {
     protected configs: {
-        log: LogConfig,
-        postgres: PostgresConfig
-    }
+        log?: LogConfig,
+        postgres?: PostgresConfig
+    } = {};
 
-    get configSource() {
+    get configFileChain(): ConfigFileChain {
         return new ConfigFileChain(this.makePath('../config'), process.env.SM_ENV as string);
     }
 
-    get configFactory() {
-        return new ConfigFactory(this.configSource);
+    get configFactory(): ConfigFactory {
+        return new ConfigFactory(this.configFileChain);
     }
 
-    get loggerFactory() {
+    get loggerFactory(): LoggerFactory {
         return new LoggerFactory(this.configs.log);
     }
 
-    get dbLogger() {
+    get typeOrmLogger(): TypeormLogger {
         return new TypeormLogger(this.loggerFactory.create('db'));
     }
 
-    get dbConnector() {
-        return new DbConnector(this.configs.postgres, this.dbLogger)
+    get dbConnector(): DbConnector {
+        return new DbConnector(this.configs.postgres, this.typeOrmLogger);
     }
 
     public async configure(): Promise<void> {
         this.configs.log = await this.configFactory.create(LogConfig);
-        await this. configurePostgres();
+        await this.configurePostgres();
     }
 
     protected makePath(filePath: string) {
-        return path.resolve(__dirname, '../../../', filePath);
+        return path.resolve(__dirname, '../../../../', filePath);
     }
 
-    private async configurePostgres() {
+    private async configurePostgres(): Promise<void> {
         this.configs.postgres = await this.configFactory.create(PostgresConfig);
         this.configs.postgres.entities = this.configs.postgres.entities.map(this.makePath);
         this.configs.postgres.migrations = this.configs.postgres.migrations.map(this.makePath);

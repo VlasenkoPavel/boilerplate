@@ -3,8 +3,8 @@ import { UserModel } from '@infrastructure/user/models/UserModel';
 import { IUserRepository } from '@domain/user';
 import { AppContext } from './AppContext';
 
-export class infrastructureContext extends AppContext {
-    get userFactory() {
+export class InfrastructureContext extends AppContext {
+    get userFactory(): UserFactory {
         return new UserFactory();
     }
 
@@ -13,4 +13,4 @@ export class infrastructureContext extends AppContext {
     }
 }
 
-export const context = new infrastructureContext();
+export const context = new InfrastructureContext();
