@@ -20,8 +20,6 @@ export class UserController {
     @Post('/')
     @OnUndefined(204)
     public async createAction(@Body() form: CreateUserFormValidator): Promise<void> {
-        throw new Error('qwe');
-
         await new CreateUserCommand(form, context).execute();
     }
 }

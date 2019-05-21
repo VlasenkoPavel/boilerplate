@@ -2,6 +2,7 @@ import { UserRepository, UserFactory } from '@infrastructure/user';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { IUserRepository } from '@domain/user';
 import { AppContext } from './AppContext';
+import { ComponentCache } from './ComponentCache';
 
 export class InfrastructureContext extends AppContext {
     get userFactory(): UserFactory {
@@ -13,4 +14,4 @@ export class InfrastructureContext extends AppContext {
     }
 }
 
-export const context = new InfrastructureContext();
+export const context = new Proxy(new InfrastructureContext(), new ComponentCache());
