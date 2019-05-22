@@ -1,7 +1,7 @@
 import { ExpressServer, ErrorHandlingMiddleware, Application, ConsoleApp, IContainer } from 'core';
 import { ServerConfig, LogConfig, PostgresConfig } from '@chaika/config';
 import { CommonAppContext } from './CommonAppContext';
-import { UserController } from '@application/controllers/UserController';
+import { Class } from '@domain/common';
 
 export class AppContext extends CommonAppContext implements IContainer {
     protected configs: {
@@ -10,7 +10,7 @@ export class AppContext extends CommonAppContext implements IContainer {
         server: ServerConfig
     };
 
-    protected components: Map<any, any> = new Map();
+    protected components: Map<Class<any>, object> = new Map();
 
     /** for routing-controllers */
     public get(identifier: any): any {
@@ -18,12 +18,9 @@ export class AppContext extends CommonAppContext implements IContainer {
     }
 
     get expressServer(): ExpressServer {
-        const server = new ExpressServer(
-            this.configs.server,
-            [ErrorHandlingMiddleware],
-            this.loggerFactory.create('app'),
-            this
-        );
+        const logger = this.loggerFactory.create('app');
+        ErrorHandlingMiddleware.setLogger(logger);
+        const server = new ExpressServer(this.configs.server, [ErrorHandlingMiddleware], logger);
 
         return server;
     }
@@ -40,15 +37,22 @@ export class AppContext extends CommonAppContext implements IContainer {
         return this.configs.postgres;
     }
 
-    public async configure(): Promise<void> {
-        await super.configure();
-        this.setRoutingControllersComponents();
-        this.configs.server = await this.configFactory.create(ServerConfig);
+    get errorHandlingMiddleware() {
+        return new ErrorHandlingMiddleware();
     }
 
-    /** for routing-controllers */
-    private setRoutingControllersComponents() {
-        this.components.set(UserController, new UserController());
-        this.components.set(ErrorHandlingMiddleware, new ErrorHandlingMiddleware(this.loggerFactory.create('app')));
+    public addComponentsAsClasses(...components: Class<any>[]): void {
+        components.forEach(component => this.components.set(component, new component()));
+    }
+
+    public addComponentsAsInstances(...components: object[]): void {
+        components.forEach(component => this.components.set(
+            (component as any).__proto__.constructor as Class<any>, component
+        ));
+    }
+
+    public async configure(): Promise<void> {
+        await super.configure();
+        this.configs.server = await this.configFactory.create(ServerConfig);
     }
 }

@@ -14,7 +14,7 @@ export interface FindOption<T extends string | number> extends BaseFO<T> {
 
 export type Optional<T> = T | undefined;
 
-export type Class<T extends Object> = { new (): T };
+export type Class<T extends Object> = { new (...arg: any): T };
 
 export interface ICommand {
     execute(): void;
