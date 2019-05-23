@@ -1,5 +1,5 @@
-import { IRunnable } from 'core';
-import { context } from '@application/configuration/loaders/infrastructureContext';
+import { IRunnable } from '@chaika/core';
+import { context } from '@application/configuration';
 
 export const runScript = async (runnable: IRunnable): Promise<void> => {
     await context.configure();

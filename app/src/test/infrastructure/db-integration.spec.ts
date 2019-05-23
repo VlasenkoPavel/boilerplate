@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { IConnector, IRunnable } from 'core/';
+import { IConnector, IRunnable } from '@chaika/core';
 import { UserRepositoryTester } from './user/UserRepositoryTester';
 import { DbTester } from '@test/common/DbTester';
 import { Class } from '@domain/common';
-import { context } from '@application/configuration/loaders/infrastructureContext';
+import { context } from '@application/configuration';
 
 const testers: Class<IRunnable>[] = [
     UserRepositoryTester,

@@ -21,7 +21,7 @@
   "dependencies": {
     "@c7s/http-errors": "c7s/http-errors#master",
     "@chaika/config": "VlasenkoPavel/config#master",
-    "core": "VlasenkoPavel/core#ver-0.0.1",
+    "@chaika/core": "VlasenkoPavel/core#ver-0.0.2-new-conf",
     "infersify-context": "VlasenkoPavel/infersify-context#master",
     "class-transformer": "^0.1.9",
     "class-validator": "^0.8.1",

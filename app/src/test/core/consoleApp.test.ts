@@ -1,6 +1,6 @@
-import { ConsoleApp, IRunnable } from 'core';
+import { ConsoleApp, IRunnable } from '@chaika/core';
 import { getConnection } from 'typeorm';
-import { context } from '@application/configuration/loaders/infrastructureContext';
+import { context } from '@application/configuration';
 
 class ConsoleAppTester {
     private app: ConsoleApp;

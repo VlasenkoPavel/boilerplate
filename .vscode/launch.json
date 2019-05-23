@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch app",
-            "program": "${workspaceFolder}/app/dist/main/app.js",
+            "program": "${workspaceFolder}/app/dist/app.js",
             "env": {
                 "SM_ENV": "test"
             }
@@ -28,7 +28,7 @@
             "name": "run test",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
             "cwd": "${workspaceFolder}",
-            "args": ["src/test/core/application.test.ts"],
+            "args": ["/home/psvl/Desktop/chaika/boilerplate/app/src/main/use-cases/user/test.spec.ts"],
             "env": {
                 "SM_ENV": "test"
             }

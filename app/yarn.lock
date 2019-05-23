@@ -146,6 +146,19 @@
     deep-extend "0.6.0"
     inversify "5.0.1"
 
+"@chaika/core@VlasenkoPavel/core#ver-0.0.2-new-conf":
+  version "0.0.1"
+  resolved "https://codeload.github.com/VlasenkoPavel/core/tar.gz/e784bf70549dd502c1da7ef1ce805d56d140912c"
+  dependencies:
+    "@c7s/http-errors" c7s/http-errors#master
+    "@chaika/config" VlasenkoPavel/config#master
+    class-validator "^0.8.1"
+    express "4.16.3"
+    log4js "3.0.6"
+    reflect-metadata "0.1.12"
+    routing-controllers "0.7.7"
+    typeorm "0.2.11"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -373,9 +386,9 @@
   integrity sha512-aRnpPa7ysx3aNW60hTiCtLHlQaIFsXFCgQlpakNgDNVFzbtusSY8PwjAQgRWfSk0ekNoBjO51eQRB6upA9uuyw==
 
 "@types/express-serve-static-core@*":
-  version "4.16.4"
-  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.16.4.tgz#56bb8be4559401d68af4a3624ae9dd3166103e60"
-  integrity sha512-x/8h6FHm14rPWnW2HP5likD/rsqJ3t/77OWx2PLxym0hXbeBWQmcPyHmwX+CtCQpjIfgrUdEoDFcLPwPZWiqzQ==
+  version "4.16.5"
+  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.16.5.tgz#0e473cceae141c43320759b7ff4af0d4428b9cdd"
+  integrity sha512-T8oej2B9TVALoCK4epWXRNWaFaqDyOaEQ3ntph+tSw5QoKnZfxgCXefIm3+nGp2XCRrkX4X7U5CSTMnwKJcOjQ==
   dependencies:
     "@types/node" "*"
     "@types/range-parser" "*"
@@ -1219,19 +1232,6 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
-
-core@VlasenkoPavel/core#ver-0.0.1:
-  version "0.0.1"
-  resolved "https://codeload.github.com/VlasenkoPavel/core/tar.gz/0c6ca38bd35ccd6a917095fb668beb6282bed7be"
-  dependencies:
-    "@c7s/http-errors" c7s/http-errors#master
-    "@chaika/config" VlasenkoPavel/config#master
-    class-validator "^0.8.1"
-    express "4.16.3"
-    log4js "3.0.6"
-    reflect-metadata "0.1.12"
-    routing-controllers "0.7.7"
-    typeorm "0.2.11"
 
 create-error-class@^3.0.0:
   version "3.0.2"
@@ -4287,9 +4287,9 @@ semver@4.3.2:
   integrity sha1-x6BxWKgL7dBSNVt3DYLWZA+AO+c=
 
 semver@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.0.0.tgz#05e359ee571e5ad7ed641a6eec1e547ba52dea65"
-  integrity sha512-0UewU+9rFapKFnlbirLi3byoOuhrSsli/z/ihNnvM24vgF+8sNBiI1LZPBSH9wJKUwaUbw+s3hToDLCXkrghrQ==
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.0.tgz#e95dc415d45ecf03f2f9f83b264a6b11f49c0cca"
+  integrity sha512-kCqEOOHoBcFs/2Ccuk4Xarm/KiWRSLEX9CAZF8xkJ6ZPlIoTZ8V5f7J16vYLJqDbR7KrxTJpR2lqjIEm2Qx9cQ==
 
 semver@~5.3.0:
   version "5.3.0"

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { interfaces } from 'inversify';
 import { Context, IDependencyLoader } from 'infersify-context';
-import { IRunnable } from 'core';
+import { IRunnable } from '@chaika/core';
 
 export abstract class Tester implements IRunnable {
     private context: Context;

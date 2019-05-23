@@ -3,11 +3,10 @@ import { v4 } from 'uuid';
 import { DbTester } from '@test/common/DbTester';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { getManager } from 'typeorm';
-import { UserRepository } from '@infrastructure/user';
-import { context } from '@application/configuration/loaders/infrastructureContext';
+import { context } from '@application/configuration';
 
 export class UserRepositoryTester extends DbTester {
-    private repository: UserRepository = context.userRepository as UserRepository;
+    private repository = context.userRepository;
 
     public run() {
         const id = v4();

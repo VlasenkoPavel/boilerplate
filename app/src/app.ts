@@ -1,7 +1,7 @@
 import './bootstrap';
-import { context } from '@application/configuration/loaders/infrastructureContext';
+import { context } from '@application/configuration';
 
 (async () => {
     await context.configure();
-    context.application.run();
+    await context.application.run();
 })();

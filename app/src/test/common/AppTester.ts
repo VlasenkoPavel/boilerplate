@@ -1,7 +1,7 @@
-import { Application } from 'core';
+import { Application } from '@chaika/core';
 import { AppRequester } from './Requester';
 import * as supertest from 'supertest';
-import { context } from '@application/configuration/loaders/infrastructureContext';
+import { context } from '@application/configuration';
 
 export abstract class AppTester {
     protected requester: AppRequester;
