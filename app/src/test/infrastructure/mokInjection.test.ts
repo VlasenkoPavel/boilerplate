@@ -1,5 +1,6 @@
 import { context } from '@application/configuration';
 import { UserRepository } from '@infrastructure/user';
+import { InfrastructureContext } from '@application/configuration/infrastructureContext';
 
 export class MockContext {
     get userRepository(): UserRepository {
@@ -10,4 +11,5 @@ export class MockContext {
 test('test', () => {
     context.merge(new MockContext());
     expect(context.userRepository).toEqual({ test: 'i mock' });
+    context.merge(new InfrastructureContext());
 });

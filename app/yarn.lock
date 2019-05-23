@@ -148,7 +148,7 @@
 
 "@chaika/core@VlasenkoPavel/core#ver-0.0.2-new-conf":
   version "0.0.1"
-  resolved "https://codeload.github.com/VlasenkoPavel/core/tar.gz/e784bf70549dd502c1da7ef1ce805d56d140912c"
+  resolved "https://codeload.github.com/VlasenkoPavel/core/tar.gz/9a28a33d4af973fead8b485279c34ce66d841413"
   dependencies:
     "@c7s/http-errors" c7s/http-errors#master
     "@chaika/config" VlasenkoPavel/config#master

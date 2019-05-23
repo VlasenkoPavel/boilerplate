@@ -7,17 +7,12 @@ export interface CreateUserParams {
     name: string;
 }
 
-export interface Dependencies {
-    userRepository: IUserRepository;
-}
-
 export class CreateUserInject {
     @inject private userRepository: IUserRepository;
     private params: CreateUserParams;
 
-    constructor(params: CreateUserParams, userRepository?: IUserRepository) {
+    constructor(params: CreateUserParams) {
         this.params = params;
-        this.userRepository = userRepository;
     }
 
     public async execute(): Promise<void> {
