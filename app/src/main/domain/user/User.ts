@@ -3,6 +3,10 @@ export interface UserParams {
     name: string;
 }
 
+export interface InnerUser {
+    getInnerData(): string;
+}
+
 export class User {
     public readonly id: string;
     protected name: string;
@@ -10,5 +14,11 @@ export class User {
     constructor({ id, name }: UserParams) {
         this.id = id;
         this.name = name;
+    }
+
+    public createInnerUser(): InnerUser {
+        return {
+            getInnerData: () => this.id + this.name
+        };
     }
 }

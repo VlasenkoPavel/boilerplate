@@ -1,4 +1,4 @@
-import { EntityManager, ObjectType } from 'typeorm';
+import { EntityManager } from 'typeorm';
 
 import { User, UserFindOption, IUserRepository } from '@domain/user';
 import { UserModel } from './models/UserModel';
@@ -6,9 +6,13 @@ import { Repository, IRepositoryFactory, QueryBuilder, SavingManager } from '../
 import { UserQueryBuilder } from './QueryBuilder';
 import { UserSavingManager } from './UserSavingManager';
 
+export interface Dependencies {
+    userFactory: IRepositoryFactory<User, UserModel>;
+}
+
 export class UserRepository extends Repository<User, UserModel, UserFindOption> implements IUserRepository {
-    constructor(model: ObjectType<UserModel>, factory: IRepositoryFactory<User, UserModel>) {
-        super(model, factory);
+    constructor({ userFactory }: Dependencies) {
+        super(UserModel, userFactory);
     }
 
     protected createQueryBuilder(
