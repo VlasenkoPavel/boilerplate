@@ -1,4 +1,3 @@
-import '../bootstrap';
 import { EntityManager, Transaction, TransactionManager } from 'typeorm';
 
 import { DbDataLoader } from '@test/common/DataLoader';
@@ -10,8 +9,8 @@ export class TestDataLoader implements IRunnable {
     private loader = new DbDataLoader();
 
     @Transaction()
-    public async run(@TransactionManager() manager?: EntityManager): Promise<void> {
-        await this.loader.load({ manager, dbModelClass: UserModel, models: userModels });
-        await manager.query('select refresh_all_views();');
+    public async run(@TransactionManager() entityManager?: EntityManager): Promise<void> {
+        await this.loader.load({ entityManager, dbModelClass: UserModel, models: userModels });
+        await entityManager.query('select refresh_all_views();');
     }
 }

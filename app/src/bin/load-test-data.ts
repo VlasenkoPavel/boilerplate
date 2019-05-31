@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import '../bootstrap';
-import { runScript } from '@main/utils/runScript';
+import { execute } from '@main/utils/execute';
 import { TestDataLoader } from '@test/common/TestDataLoader';
 
-runScript(new TestDataLoader());
+execute(TestDataLoader);

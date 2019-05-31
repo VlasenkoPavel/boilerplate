@@ -1,17 +1,24 @@
-import '../../bootstrap';
-import { EntityManager, Transaction, TransactionManager } from 'typeorm';
+import { EntityManager, getManager } from 'typeorm';
 
 import { DbDataLoader } from '@test/common/DataLoader';
 import { UserModel } from '@infrastructure/user/models/UserModel';
 import { userModels } from '@test/data';
-import { IRunnable } from '@chaika/core';
+import { ICommand } from '@chaika/app-components';
 
-export class TestDataLoader implements IRunnable {
+interface Dependencies {
+    entityManager: EntityManager;
+}
+
+export class TestDataLoader implements ICommand {
+    private entityManager: EntityManager;
     private loader = new DbDataLoader();
 
-    @Transaction()
-    public async run(@TransactionManager() manager?: EntityManager): Promise<void> {
-        await this.loader.load({ manager, dbModelClass: UserModel, models: userModels });
+    constructor({ entityManager = getManager() }: Dependencies = {} as Dependencies) {
+        this.entityManager = entityManager;
+    }
+
+    public async execute(): Promise<void> {
+        await this.loader.load({ entityManager: this.entityManager, dbModelClass: UserModel, models: userModels });
         // await manager.query('select refresh_all_views();');
     }
 }

@@ -1,13 +1,23 @@
 #!/usr/bin/env node
 import '../bootstrap';
-import { IRunnable } from '@chaika/core';
-import { runScript } from '../main/utils/runScript';
-import { context } from '@application/configuration';
+import { execute } from '../main/utils/execute';
+import { ICommand } from '@chaika/app-components';
+import { PostgresConfig } from '@chaika/config';
 
-class GetDbConfig implements IRunnable {
-    public async run(): Promise<void> {
-        process.stdout.write(JSON.stringify(context.postgresConfig));
+interface Dependencies {
+    postgresConfig: PostgresConfig;
+}
+
+class GetDbConfig implements ICommand {
+    private postgresConfig: PostgresConfig;
+
+    constructor({ postgresConfig }: Dependencies) {
+        this.postgresConfig = postgresConfig;
+    }
+
+    public async execute(): Promise<void> {
+        process.stdout.write(JSON.stringify(this.postgresConfig));
     }
 }
 
-runScript(new GetDbConfig());
+execute(GetDbConfig);

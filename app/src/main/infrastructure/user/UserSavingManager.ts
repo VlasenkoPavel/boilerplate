@@ -1,17 +1,17 @@
 import { User } from '@domain/user';
 import { UserForSaving } from './UserForSaving';
-import { SavingManager } from '../common';
+import { SaveCommand } from '../common';
 
-export class UserSavingManager extends SavingManager<User> {
-    public async save(user: User) {
-        const userForSaving = this.getUserForSaving(user);
-
+export class SaveUserCommand extends SaveCommand<User> {
+    public async execute() {
+        const userForSaving = this.createUserForSaving(this.entity);
         await this.manager.save(userForSaving.createUserModel());
     }
 
-    private getUserForSaving(user: User): UserForSaving {
-        (user as any).__proto__ = UserForSaving.prototype;
+    private createUserForSaving(user: User): UserForSaving {
+        const userForSaving = Object.create(UserForSaving.prototype);
+        Object.assign(userForSaving, user);
 
-        return user as UserForSaving;
+        return userForSaving;
     }
 }

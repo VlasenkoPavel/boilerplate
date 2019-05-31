@@ -1,6 +1,7 @@
 import { JsonController, OnUndefined, Body, Post } from 'routing-controllers';
 import { CreateUserFormValidator } from '../validators';
 import { CreateUserCommand } from '@use-cases/user';
+import { context } from '@application/configuration';
 
 @JsonController('/user')
 export class UserController {
@@ -18,8 +19,8 @@ export class UserController {
      */
     @Post('/')
     @OnUndefined(204)
-    public async createAction(@Body() form: CreateUserFormValidator): Promise<void> {
-        await new CreateUserCommand(form).execute();
+    public async createAction(@Body() params: CreateUserFormValidator): Promise<void> {
+        await new CreateUserCommand(context.with({ params })).execute();
         // await new CreateUserInject(form).execute();
         // await new CreateUserInjected(form).execute();
     }

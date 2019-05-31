@@ -1,3 +1,6 @@
+const path = require('path');
+const pathToRoot = '../../';
+
 module.exports = {
     type: "postgres",
     host: "127.0.0.1",
@@ -5,6 +8,6 @@ module.exports = {
     database: process.env.SM_DB_B_NAME || "test",
     username: process.env.SM_DB_USERNAME || "gorod",
     password: process.env.SM_DB_PASSWORD || "123qwe",
-    migrations: ['./main/infrastructure/migrations/*.js'],
-    entities: ['./dist/main/infrastructure/**/models/*.js']
+    migrations: [path.resolve(__dirname, pathToRoot, './dist/main/infrastructure/migrations/*.js')],
+    entities: [path.resolve(__dirname, pathToRoot, './dist/main/infrastructure/**/models/*.js')]
 };

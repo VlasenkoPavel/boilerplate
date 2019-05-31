@@ -2,9 +2,9 @@ import { EntityManager } from 'typeorm';
 
 import { User, UserFindOption, IUserRepository } from '@domain/user';
 import { UserModel } from './models/UserModel';
-import { Repository, IRepositoryFactory, QueryBuilder, SavingManager } from '../common';
-import { UserQueryBuilder } from './QueryBuilder';
-import { UserSavingManager } from './UserSavingManager';
+import { Repository, IRepositoryFactory, FindCommand, SaveCommand } from '../common';
+import { FindUserCommand } from './FindUserCommand';
+import { SaveUserCommand } from './UserSavingManager';
 
 export interface Dependencies {
     userFactory: IRepositoryFactory<User, UserModel>;
@@ -15,14 +15,14 @@ export class UserRepository extends Repository<User, UserModel, UserFindOption> 
         super(UserModel, userFactory);
     }
 
-    protected createQueryBuilder(
+    protected createFindCommand(
         findOption: UserFindOption,
         manager: EntityManager
-    ): QueryBuilder<UserModel, UserFindOption> {
-        return new UserQueryBuilder(manager, findOption);
+    ): FindCommand<UserModel, UserFindOption> {
+        return new FindUserCommand(manager, findOption);
     }
 
-    protected getSavingManager(manager: EntityManager): SavingManager<User> {
-        return new UserSavingManager(manager);
+    protected createSaveCommand(manager: EntityManager, user: User): SaveCommand<User> {
+        return new SaveUserCommand(manager, user);
     }
 }

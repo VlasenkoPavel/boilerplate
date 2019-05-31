@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 import '../bootstrap';
-import { TransactionManager, Transaction, EntityManager } from 'typeorm';
-import { IRunnable } from '@chaika/core';
-import { runScript } from '../main/utils/runScript';
+import { getManager } from 'typeorm';
+import { execute } from '../main/utils/execute';
 import { clearDb } from '@utils/clearDb';
+import { ICommand } from '@chaika/app-components';
 
-export class Script implements IRunnable {
-    @Transaction()
-    public async run(@TransactionManager() aManager?: EntityManager): Promise<void> {
-        const manager = aManager as EntityManager;
-        await clearDb(manager);
+export class Command implements ICommand {
+    public async execute(): Promise<void> {
+        await clearDb(getManager());
     }
 }
 
-runScript(new Script());
+execute(Command);

@@ -1,6 +1,6 @@
-import { EntityManager } from 'typeorm';
+import { EntityManager, getManager } from 'typeorm';
 
-export const clearAllTables = (manager: EntityManager): Promise<void> =>
+export const clearAllTables = (manager: EntityManager = getManager()): Promise<void> =>
     manager.query(`
         select  clear_tables();
     `);

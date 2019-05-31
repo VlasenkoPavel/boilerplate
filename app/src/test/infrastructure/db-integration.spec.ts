@@ -1,36 +1,30 @@
-import 'reflect-metadata';
-import { IConnector, IRunnable } from '@chaika/core';
-import { UserRepositoryTester } from './user/UserRepositoryTester';
-import { DbTester } from '@test/common/DbTester';
-import { Class } from '@domain/common';
-import { context } from '@application/configuration';
+import { TestCommand, test } from '@chaika/test';
+import { Class, ICommand, Application } from '@chaika/application';
+import { buildConsoleApp } from '@main/utils/buildConsoleApp';
 
-const testers: Class<IRunnable>[] = [
-    UserRepositoryTester,
-];
+const commands: Class<ICommand>[] = [];
 
-export class DbIntegrationTester extends DbTester {
-    private connector: IConnector;
-    private testers: Class<IRunnable>[];
+export class DbIntegrationTester extends TestCommand {
+    protected commands: Class<ICommand>[];
+    protected app: Application;
 
-    constructor(testers: Class<IRunnable>[]) {
+    constructor(commands: Class<ICommand>[]) {
         super();
-        this.testers = testers;
+        this.commands = commands;
     }
 
-    public run(): void {
-        beforeAll(async () => {
-            await context.configure();
-            this.connector = context.dbConnector;
-            await this.connector.connect();
-        });
+    protected async setUp(): Promise<void> {
+        this.app = await buildConsoleApp(this.commands);
+    }
 
-        afterAll(async () => this.connector.disconnect());
+    @test()
+    protected firstTest() {
+        expect(true).toBeTruthy();
+    }
 
-        describe('db integration tests', () => {
-            this.testers.forEach(Tester => (new Tester()).run());
-        });
+    protected async tearDown(): Promise<void> {
+        await this.app.stop();
     }
 }
 
-new DbIntegrationTester(testers).run();
+new DbIntegrationTester(commands).execute();

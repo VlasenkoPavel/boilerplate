@@ -1,7 +1,7 @@
 import './bootstrap';
-import { context } from '@application/configuration';
+import { buildApp } from '@main/utils/buildApp';
 
 (async () => {
-    await context.configure();
-    await context.application.run();
+    const app = await buildApp();
+    await app.start();
 })();

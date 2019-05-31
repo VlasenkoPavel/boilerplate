@@ -1,9 +1,5 @@
-export type Identifiable = { id: number | string };
+import { Identifiable } from '@domain/common';
 
-export type Entity = { id: number | string };
-
-export interface Model extends Identifiable {
+export interface Model<T> extends Identifiable<T> {
     [key: string]: any;
 }
-
-export type IdType<T> = T extends { id: string } ? string : number;

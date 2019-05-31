@@ -1,1 +1,0 @@
-{"type":"postgres","host":"127.0.0.1","logging":true,"database":"test","username":"gorod","password":"123qwe","migrations":["/home/psvl/Desktop/chaika/boilerplate/app/dist/main/infrastructure/migrations/*.js"],"entities":["/home/psvl/Desktop/chaika/boilerplate/app/dist/main/infrastructure/**/models/*.js"]}

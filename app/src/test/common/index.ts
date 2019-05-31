@@ -1,1 +1,1 @@
-export * from './AppTester';
+export * from './SystemTestCommand';

@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "@c7s/http-errors": "c7s/http-errors#master",
+    "@chaika/app-components": "VlasenkoPavel/app-components#master",
     "@chaika/config": "VlasenkoPavel/config#master",
+    "@chaika/application": "VlasenkoPavel/application#name-injection",
     "@chaika/core": "VlasenkoPavel/core#ver-0.0.2-new-conf",
     "@chaika/test": "VlasenkoPavel/test#master",
     "infersify-context": "VlasenkoPavel/infersify-context#master",

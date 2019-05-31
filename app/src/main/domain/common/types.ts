@@ -1,5 +1,3 @@
-export type Identifiable = { id: number | string };
-
 export interface Model extends Identifiable {
     [key: string]: any;
 }
@@ -19,3 +17,6 @@ export type Class<T extends Object> = { new (...arg: any): T };
 export interface ICommand {
     execute(): void;
 }
+
+export type Identifiable<T = number | string> = { id: T };
+export type IdType<T> = T extends { id: string } ? string : number;

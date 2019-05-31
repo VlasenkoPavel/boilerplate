@@ -1,9 +1,8 @@
 import { isEmpty } from 'lodash';
 import { EntityManager, SelectQueryBuilder, ObjectType } from 'typeorm';
-import { Identifiable } from '../types';
-import { FindOption } from '@domain/common';
+import { FindOption, Identifiable } from '@domain/common';
 
-export abstract class QueryBuilder<OrmModel extends Identifiable, FO extends FindOption<OrmModel['id']>> {
+export abstract class FindCommand<OrmModel extends Identifiable, FO extends FindOption<OrmModel['id']>> {
     protected manager: EntityManager;
     protected qb: SelectQueryBuilder<OrmModel>;
     protected isReturnEmpty = true;
@@ -26,15 +25,15 @@ export abstract class QueryBuilder<OrmModel extends Identifiable, FO extends Fin
             .getResult();
     }
 
-    protected addRelations(): QueryBuilder<OrmModel, FO>  {
+    protected addRelations(): FindCommand<OrmModel, FO>  {
         return this;
     }
 
-    protected changeSelection(): QueryBuilder<OrmModel, FO>  {
+    protected changeSelection(): FindCommand<OrmModel, FO>  {
         return this;
     }
 
-    protected addFilters(): QueryBuilder<OrmModel, FO>  {
+    protected addFilters(): FindCommand<OrmModel, FO>  {
         return this;
     }
 
@@ -42,7 +41,7 @@ export abstract class QueryBuilder<OrmModel extends Identifiable, FO extends Fin
         column: P,
         values: OrmModel[P][] | undefined,
         table = this.alias
-    ): QueryBuilder<OrmModel, FO> {
+    ): FindCommand<OrmModel, FO> {
         this.checkListOnSetAndEmpty(values);
 
         if (!isEmpty(values)) {
@@ -56,7 +55,7 @@ export abstract class QueryBuilder<OrmModel extends Identifiable, FO extends Fin
         column: P,
         values: OtherModel[P][] | undefined,
         alias: string
-    ): QueryBuilder<OrmModel, FO> {
+    ): FindCommand<OrmModel, FO> {
         this.checkListOnSetAndEmpty(values);
 
         if (!isEmpty(values)) {

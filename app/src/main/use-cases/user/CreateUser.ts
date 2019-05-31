@@ -1,11 +1,10 @@
 import { IUserRepository, User } from '@domain/user';
+import { Parameterized } from '@chaika/core';
 
 export interface UserData {
     id: string;
     name: string;
 }
-
-// type Params<T, P> = T & { params: P }
 
 export interface Dependencies {
     userRepository: IUserRepository;
@@ -15,9 +14,9 @@ export class CreateUserCommand {
     private params: UserData;
     private userRepository: IUserRepository;
 
-    constructor(deps: Dependencies, params: UserData) {
+    constructor({ userRepository, params }: Parameterized<Dependencies, UserData>) {
         this.params = params;
-        this.userRepository = deps.userRepository;
+        this.userRepository = userRepository;
     }
 
     public async execute(): Promise<void> {

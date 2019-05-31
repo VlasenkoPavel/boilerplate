@@ -1,9 +1,9 @@
 import { EntityManager } from 'typeorm';
-import { QueryBuilder } from '../common';
+import { FindCommand } from '../common';
 import { UserModel } from './models/UserModel';
 import { UserFindOption } from '@domain/user';
 
-export class UserQueryBuilder extends QueryBuilder<UserModel, UserFindOption> {
+export class FindUserCommand extends FindCommand<UserModel, UserFindOption> {
     private names: string[];
 
     constructor(manager: EntityManager, findOption: UserFindOption) {

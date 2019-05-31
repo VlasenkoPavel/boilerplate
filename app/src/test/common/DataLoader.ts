@@ -6,12 +6,12 @@ export class DbDataLoader {
     public async load<T, P extends keyof T>({
         dbModelClass,
         models,
-        manager,
+        entityManager,
         consistentlySortedBy
     }: {
         dbModelClass: Class<T>;
         models: { [key: string]: T };
-        manager: EntityManager;
+        entityManager: EntityManager;
         consistentlySortedBy?: P;
     }): Promise<void> {
         const sortingKey = consistentlySortedBy;
@@ -23,6 +23,6 @@ export class DbDataLoader {
             ? modelList.sort(({ [sortingKey]: id1 }, { [sortingKey]: id2 }) => Number(id1) - Number(id2))
             : modelList;
 
-        await manager.save(dbModelClass, listForSaving as DeepPartial<T>);
+        await entityManager.save(dbModelClass, listForSaving as DeepPartial<T>);
     }
 }
