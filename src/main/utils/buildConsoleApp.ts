@@ -4,17 +4,16 @@ import { CommandLauncher, LoggerFactory, TypeOrmLogger, TypeOrmConnector } from 
 import { configDir } from './configDir';
 
 export const buildConsoleApp = async (commands: Class<ICommand>[]): Promise<Application> => {
-    const configFactory = new ConfigFactory(new ConfigFileChain(configDir, process.env.SM_ENV as string));
-    const logConfig = await configFactory.create(LogConfig);
-    const loggerFactory = new LoggerFactory(logConfig);
-    const logger = loggerFactory.create('app');
-
-    const builder = new ApplicationBuilder(CommandLauncher);
-    await builder.buildConfigs(configFactory, [PostgresConfig]);
+    const builder = await new ApplicationBuilder(CommandLauncher)
+        .buildComponent(new ConfigFileChain(configDir, process.env.SM_ENV as string))
+        .buildWithParams(ConfigFactory, ['configFileChain'])
+        .buildConfigs([LogConfig, PostgresConfig]);
 
     const app =
         builder
-            .buildComponent(logger)
+            .buildWithParams(LoggerFactory, ['logConfig'])
+            .setParameter('category', 'app')
+            .buildByFactory('loggerFactory', ['category'])
             .buildComponent(TypeOrmLogger)
             .buildComponent(TypeOrmConnector)
             .buildCommands(commands)

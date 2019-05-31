@@ -154,7 +154,7 @@
 
 "@chaika/application@VlasenkoPavel/application#name-injection":
   version "1.0.0"
-  resolved "https://codeload.github.com/VlasenkoPavel/application/tar.gz/1173a8c9c5f009dc40d2dd5f862fd2524ef7c214"
+  resolved "https://codeload.github.com/VlasenkoPavel/application/tar.gz/a5f0e7544242f9329f85047d8c02d773c38a5b77"
   dependencies:
     lodash "^4.17.11"
 

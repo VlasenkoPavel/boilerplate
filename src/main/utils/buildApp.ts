@@ -4,19 +4,16 @@ import { LoggerFactory, ExpressLauncher, ExpressServer, TypeOrmLogger, TypeOrmCo
 import { ApplicationBuilder } from '@chaika/application';
 
 export const buildApp = async () => {
-    const configFactory = new ConfigFactory(new ConfigFileChain(configDir, process.env.SM_ENV as string));
-    const logConfig = await configFactory.create(LogConfig);
-    const loggerFactory = new LoggerFactory(logConfig);
-    const logger = loggerFactory.create('app');
+    const builder = await new ApplicationBuilder(ExpressLauncher)
+            .buildComponent(new ConfigFileChain(configDir, process.env.SM_ENV as string))
+            .buildWithParams(ConfigFactory, ['configFileChain'])
+            .buildConfigs([LogConfig, ServerConfig, PostgresConfig]);
 
-    const builder = new ApplicationBuilder(ExpressLauncher);
-    await builder.buildConfigs(configFactory, [LogConfig, ServerConfig, PostgresConfig]);
-
-    const app =
-        builder
-            .buildComponent(logConfig)
+    const app = builder
+            .buildWithParams(LoggerFactory, ['logConfig'])
+            .setParameter('category', 'app')
+            .buildByFactory('loggerFactory', ['category'])
             .buildComponent(ExpressServer)
-            .buildComponent(logger)
             .buildComponent(TypeOrmLogger)
             .buildComponent(TypeOrmConnector)
             .create();
