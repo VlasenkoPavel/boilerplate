@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch app",
-            "program": "${workspaceFolder}/app/dist/app.js",
+            "program": "${workspaceFolder}/dist/app.js",
             "env": {
                 "SM_ENV": "test"
             }
@@ -17,7 +17,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Script",
-            "program": "${workspaceFolder}/app/dist/bin/db-config.js",
+            "program": "${workspaceFolder}/dist/bin/db-config.js",
             "env": {
                 "SM_ENV": "test"
             }
@@ -28,7 +28,7 @@
             "name": "run test",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
             "cwd": "${workspaceFolder}",
-            "args": ["/home/psvl/Desktop/chaika/boilerplate/app/src/main/use-cases/user/test.spec.ts"],
+            "args": ["/home/psvl/Desktop/chaika/boilerplate/app/src/test/core/consoleApp.test.ts"],
             "env": {
                 "SM_ENV": "test"
             }

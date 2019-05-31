@@ -3,3 +3,4 @@ dist/
 apidoc/
 /ormconfig.json
 runtime/
+.vscode/
