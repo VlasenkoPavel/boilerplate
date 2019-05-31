@@ -23,6 +23,7 @@ export abstract class SystemTestCommand extends TestCommand {
 
     protected async setUp(): Promise<void> {
         this.app = await buildApp();
+        await this.app.init();
         await this.app.start();
         this.requester = new AppRequester(supertest(getHttpServer.call(this.app)));
     }

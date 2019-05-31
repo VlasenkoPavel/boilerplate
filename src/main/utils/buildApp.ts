@@ -18,7 +18,5 @@ export const buildApp = async () => {
             .buildComponent(TypeOrmConnector)
             .create();
 
-    await app.init();
-
     return app;
 };

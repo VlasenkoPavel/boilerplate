@@ -15,6 +15,8 @@ export class DbIntegrationTester extends TestCommand {
 
     protected async setUp(): Promise<void> {
         this.app = await buildConsoleApp(this.commands);
+        await this.app.init();
+        await this.app.start();
     }
 
     @test()

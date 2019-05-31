@@ -1,7 +1,8 @@
 import { JsonController, OnUndefined, Body, Post } from 'routing-controllers';
 import { CreateUserFormValidator } from '../validators';
 import { CreateUserCommand } from '@use-cases/user';
-import { context } from '@application/configuration';
+// import { context, createUseCase, ctx } from '@application/configuration';
+import { ctx } from '@application/configuration';
 
 @JsonController('/user')
 export class UserController {
@@ -20,8 +21,14 @@ export class UserController {
     @Post('/')
     @OnUndefined(204)
     public async createAction(@Body() params: CreateUserFormValidator): Promise<void> {
-        await new CreateUserCommand(context.with({ params })).execute();
+        await new CreateUserCommand(ctx(params)).execute();
+        // or
+        // await new CreateUserCommand(context.with({ params })).execute();
+        // or
+        // await createUseCase(CreateUserCommand, params).execute();
+        // or
         // await new CreateUserInject(form).execute();
-        // await new CreateUserInjected(form).execute();
+
+        // ctx can be a decorator, like this: createAction(@Context() @Body() params: CreateUserFormValidator)
     }
 }

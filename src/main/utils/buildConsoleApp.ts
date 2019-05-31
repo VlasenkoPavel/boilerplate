@@ -19,7 +19,5 @@ export const buildConsoleApp = async (commands: Class<ICommand>[]): Promise<Appl
             .buildCommands(commands)
             .create();
 
-    await app.init();
-
     return app;
 };
