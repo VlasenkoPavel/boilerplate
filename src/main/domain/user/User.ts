@@ -15,10 +15,4 @@ export class User {
         this.id = id;
         this.name = name;
     }
-
-    public createInnerUser(): InnerUser {
-        return {
-            getInnerData: () => this.id + this.name
-        };
-    }
 }
