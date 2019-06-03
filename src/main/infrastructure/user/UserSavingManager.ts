@@ -3,6 +3,7 @@ import { SaveCommand } from '../common';
 import { UserModel } from './models/UserModel';
 
 export class SaveUserCommand extends SaveCommand<User> {
+
     public async execute() {
         await this.manager.save(this.createModels.call(this.entity));
     }
@@ -15,4 +16,5 @@ export class SaveUserCommand extends SaveCommand<User> {
 
         return model;
     }
+
 }

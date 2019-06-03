@@ -8,7 +8,7 @@ const mock =  { test: 'i mock' };
 
 class TestError extends Error {}
 const mockContext = new Context();
-mockContext.add(mock, 'userRepository');
+mockContext.addValue(mock, 'userRepository');
 
 class ContextTest extends TestCommand {
 

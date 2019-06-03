@@ -8,6 +8,7 @@ export interface InnerUser {
 }
 
 export class User {
+
     public readonly id: string;
     protected name: string;
 
@@ -15,4 +16,5 @@ export class User {
         this.id = id;
         this.name = name;
     }
+
 }
